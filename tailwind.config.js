@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Pretandard: ["Pretendard", ...defaultTheme.fontFamily.sans],
+        Pretendard: ["Pretendard", ...defaultTheme.fontFamily.sans],
       },
     },
   },
