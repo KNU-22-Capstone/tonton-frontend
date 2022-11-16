@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import React, { useState } from "react";
+import axios from "axios"
 
 const login = () => {
   const [id, setId] = useState<string>("");
@@ -21,17 +22,16 @@ const login = () => {
   };
 
   const postTest = async ()=>{
-    await fetch("localhost:8080/api/v1", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: "Test",
-        loginID: id,
-        password: password
-      }),
-    }).then((response) => console.log(response));
+      axios.post('localhost:8080>/api/v1', {
+      loginId: id,
+      password: password
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
