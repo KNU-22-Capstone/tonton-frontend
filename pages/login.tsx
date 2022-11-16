@@ -17,14 +17,19 @@ const login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(id, password);
-    // try {
-    //     const req = await fetch(
-
-    //     )
-    // } catch (err) {
-    //     console.log(err)
-    // }
+    postTest()
   };
+
+  const postTest = async ()=>{
+    const response = await fetch('localhost:/8080/api/vi', {
+      method: 'POST',
+      headers: {
+        'id': id,
+        'password' : password
+      }
+    });
+    return response.json()
+  }
 
   return (
     <>
@@ -35,7 +40,7 @@ const login = () => {
       <section className="bg-gray-50 dark:bg-gray-900 font-Pretendard">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <Link href="/" className="text-xl font-bold leading-tight tracking-tight text-slate-900 md:text-2xl dark:text-white text-center pb-5">
-            코디위키 - TONTON
+                코디위키 - TONTON
           </Link>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
