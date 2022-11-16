@@ -3,43 +3,48 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const register = () => {
-  const [email, setEmail] = useState<string>("");
-  const [id, setId] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [passwordChk, setPasswordChk] = useState<string>("");
+  const [id, setId] = useState<string>(""); // 아이디
+  const [idCheak, setIdCheak] = useState<boolean>(false); // 아이디 유효성 검사
+
+  const [password, setPassword] = useState<string>(""); // 비밀번호
+  const [passwordChk, setPasswordChk] = useState<string>(""); // 비밀번호 확인
+  const [passwordBoolean, setPasswordBoolean] = useState<boolean>(false); // 비밀번호 확인 유효성 검사
+  
   const [nickname, setNickname] = useState<string>("");
 
-  const emailCheck = (email: string) => {
-    const re =
-      /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-    if (re.test(email)) {
-      console.log("이메일의 형식이 맞습니다!");
-    } else {
-      console.log("이메일 형식이 다릅니다!");
+  // 메시지
+  const [idMsg, setIdMsg]= useState<string>(""); 
+  const [passwordMsg, setPasswordMsg]= useState<string>("");
+  
+  const re_idCheck = (id: string) => {
+    const re = /^[a-z]+[a-z0-9]{4,19}$/g;
+    if (re.test(id)) {
+      //console.log("멋진 아이디네요!");
+      setIdMsg("멋진 아이디네요!");
+      setIdCheak(true);
+    } else {  
+      //console.log("아이디는 5~20자의 영문 소문자와 숫자만 사용 가능합니다");
+      setIdMsg("아이디는 5~20자의 영문 소문자와 숫자만 사용 가능합니다.");
+      setIdCheak(false);
     }
   };
-
-  const idCheck = (id: string) => {
-    
-  }
 
   const passwordDoubleCheck = (password: string, passwordChk: string) => {
     if (password !== passwordChk) {
-      console.log("비밀번호와 비밀번호 확인이 다릅니다!");
+      //console.log("비밀번호와 비밀번호 확인이 다릅니다!");
+      setPasswordMsg("비밀번호와 비밀번호 확인이 다릅니다!");
+      setPasswordBoolean(false);
       return;
     } else {
-      console.log("비밀번호와 비밀번호의 확인이 동일합니다!");
+      //console.log("비밀번호와 비밀번호의 확인이 동일합니다!");
+      setPasswordMsg("비밀번호와 비밀번호의 확인이 동일합니다!");
+      setPasswordBoolean(true)
     }
-  };
-
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    emailCheck(e.target.value);
-    console.log(email);
   };
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
+    re_idCheck(e.target.value);
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -75,25 +80,6 @@ const register = () => {
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    이메일
-                  </label>
-                  <input
-                    onChange={onChangeEmail}
-                    type="email"
-                    name="email"
-                    id="email"
-                    className={
-                      "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    }
-                    placeholder="이메일 주소"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
                     htmlFor="text"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
@@ -105,7 +91,7 @@ const register = () => {
                       type="text"
                       name="id"
                       id="id"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="아이디"
                       required
                     />
@@ -113,6 +99,7 @@ const register = () => {
                       중복 확인
                     </button>
                   </div>
+                  {id.length > 0 && <div className={`text-xs my-2 ${idCheak ? 'text-green-500' : 'text-red-500'}`}>{idMsg}</div>}
                 </div>
                 <div>
                   <label
@@ -147,6 +134,7 @@ const register = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                   />
+                  {passwordChk.length > 0 &&  <div className={`text-xs my-2 ${passwordBoolean ? 'text-green-500' : 'text-red-500'}`}>{passwordMsg}</div>}
                 </div>
                 <div>
                   <label
@@ -155,6 +143,7 @@ const register = () => {
                   >
                     닉네임
                   </label>
+                  <div className="flex">
                   <input
                     onChange={onChangeNickname}
                     type="text"
@@ -164,6 +153,10 @@ const register = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                   />
+                    <button className="ml-2 text-bold w-1/3 text-center bg-slate-900 text-white rounded-lg">
+                      중복 확인
+                    </button>
+                    </div>
                 </div>
                 <button
                   type="submit"
