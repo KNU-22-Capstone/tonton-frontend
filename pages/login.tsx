@@ -21,14 +21,17 @@ const login = () => {
   };
 
   const postTest = async ()=>{
-    const response = await fetch('localhost:/8080/api/vi', {
-      method: 'POST',
+    await fetch("localhost:8080/api/v1", {
+      method: "POST",
       headers: {
-        'id': id,
-        'password' : password
-      }
-    });
-    return response.json()
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Test",
+        loginID: id,
+        password: password
+      }),
+    }).then((response) => console.log(response));
   }
 
   return (
