@@ -4,41 +4,58 @@ import React, { useState } from "react";
 
 const register = () => {
   const [id, setId] = useState<string>(""); // 아이디
-  const [idCheak, setIdCheak] = useState<boolean>(false); // 아이디 유효성 검사
+  const [idCheak, setIdCheak] = useState<boolean>(false); // 아이디 유효성 검사 boolean
 
   const [password, setPassword] = useState<string>(""); // 비밀번호
-  const [passwordChk, setPasswordChk] = useState<string>(""); // 비밀번호 확인
-  const [passwordBoolean, setPasswordBoolean] = useState<boolean>(false); // 비밀번호 확인 유효성 검사
-  
-  const [nickname, setNickname] = useState<string>("");
+  const [passwordConf, setPasswordConf] = useState<string>(""); // 비밀번호 확인
 
-  // 메시지
-  const [idMsg, setIdMsg]= useState<string>(""); 
-  const [passwordMsg, setPasswordMsg]= useState<string>("");
-  
+  const [passwordCheak, setPasswordCheak] = useState<boolean>(false); // 비밀번호 유효성 검사 boolean
+  const [passwordDoubleCheck, setPasswordDoubleCheck] =
+    useState<boolean>(false); // 비밀번호 확인 boolean
+
+  const [nickname, setNickname] = useState<string>(""); // 닉네임
+  const [nicknameCheck, setNicknameCheck] = useState<boolean>(false); // 닉네임 유효성 검사 boolean
+
+  // 확인과 에러 메시지
+  const [idMsg, setIdMsg] = useState<string>("");
+  const [passwordChkMsg, setPasswordChkMsg] = useState<string>("");
+  const [passwordConfMsg, setPasswordConfMsg] = useState<string>("");
+
   const re_idCheck = (id: string) => {
     const re = /^[a-z]+[a-z0-9]{4,19}$/g;
     if (re.test(id)) {
       //console.log("멋진 아이디네요!");
       setIdMsg("멋진 아이디네요!");
       setIdCheak(true);
-    } else {  
+    } else {
       //console.log("아이디는 5~20자의 영문 소문자와 숫자만 사용 가능합니다");
       setIdMsg("아이디는 5~20자의 영문 소문자와 숫자만 사용 가능합니다.");
       setIdCheak(false);
     }
   };
 
-  const passwordDoubleCheck = (password: string, passwordChk: string) => {
+  const re_passwordCheck = (password: string) => {
+    const re =
+      /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,15}$/;
+    if (re.test(password)) {
+      setPasswordChkMsg("비밀번호의 조건에 맞습니다!");
+      setPasswordCheak(true);
+    } else {
+      setPasswordChkMsg("5~15자의 영문, 숫자, 특수문자를 한 번씩 사용하세요.");
+      setPasswordCheak(false);
+    }
+  };
+
+  const passwordDoubleCheck_ = (password: string, passwordChk: string) => {
     if (password !== passwordChk) {
       //console.log("비밀번호와 비밀번호 확인이 다릅니다!");
-      setPasswordMsg("비밀번호와 비밀번호 확인이 다릅니다!");
-      setPasswordBoolean(false);
+      setPasswordConfMsg("비밀번호와 비밀번호 확인이 다릅니다!");
+      setPasswordDoubleCheck(false);
       return;
     } else {
       //console.log("비밀번호와 비밀번호의 확인이 동일합니다!");
-      setPasswordMsg("비밀번호와 비밀번호의 확인이 동일합니다!");
-      setPasswordBoolean(true)
+      setPasswordConfMsg("비밀번호와 비밀번호의 확인이 동일합니다!");
+      setPasswordDoubleCheck(true);
     }
   };
 
@@ -48,11 +65,11 @@ const register = () => {
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    re_passwordCheck(e.target.value);
   };
-  const onChangePasswordChk = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(password, passwordChk);
-    setPasswordChk(e.target.value);
-    passwordDoubleCheck(password, e.target.value);
+  const onChangePasswordConf = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordConf(e.target.value);
+    passwordDoubleCheck_(password, e.target.value);
   };
   const onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
@@ -99,7 +116,15 @@ const register = () => {
                       중복 확인
                     </button>
                   </div>
-                  {id.length > 0 && <div className={`text-xs my-2 ${idCheak ? 'text-green-500' : 'text-red-500'}`}>{idMsg}</div>}
+                  {id.length > 0 && (
+                    <div
+                      className={`text-xs my-2 ${
+                        idCheak ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {idMsg}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label
@@ -114,9 +139,20 @@ const register = () => {
                     name="password"
                     id="password"
                     placeholder="비밀번호"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className={`${
+                      passwordCheak ? "border-green-500" : ""
+                    } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     required
                   />
+                  {password.length > 0 && (
+                    <div
+                      className={`text-xs my-2 ${
+                        passwordCheak ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {passwordChkMsg}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label
@@ -126,15 +162,25 @@ const register = () => {
                     비밀번호 확인
                   </label>
                   <input
-                    onChange={onChangePasswordChk}
+                    onChange={onChangePasswordConf}
                     type="password"
                     name="password"
                     id="password"
                     placeholder="비밀번호 확인"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className={`${
+                      passwordDoubleCheck ? "border-green-500" : ""
+                    } bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     required
                   />
-                  {passwordChk.length > 0 &&  <div className={`text-xs my-2 ${passwordBoolean ? 'text-green-500' : 'text-red-500'}`}>{passwordMsg}</div>}
+                  {passwordConf.length > 0 && (
+                    <div
+                      className={`text-xs my-2 ${
+                        passwordDoubleCheck ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {passwordConfMsg}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label
@@ -144,19 +190,19 @@ const register = () => {
                     닉네임
                   </label>
                   <div className="flex">
-                  <input
-                    onChange={onChangeNickname}
-                    type="text"
-                    name="nickname"
-                    id="nickname"
-                    placeholder="닉네임"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
+                    <input
+                      onChange={onChangeNickname}
+                      type="text"
+                      name="nickname"
+                      id="nickname"
+                      placeholder="닉네임"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required
+                    />
                     <button className="ml-2 text-bold w-1/3 text-center bg-slate-900 text-white rounded-lg">
                       중복 확인
                     </button>
-                    </div>
+                  </div>
                 </div>
                 <button
                   type="submit"
