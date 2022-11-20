@@ -47,15 +47,15 @@ const register = () => {
   };
 
   const passwordDoubleCheck_ = (password: string, passwordChk: string) => {
-    if (password !== passwordChk) {
+    if (password === passwordChk) {
       //console.log("비밀번호와 비밀번호 확인이 다릅니다!");
-      setPasswordConfMsg("비밀번호와 비밀번호 확인이 다릅니다!");
-      setPasswordDoubleCheck(false);
+      setPasswordConfMsg("비밀번호와 비밀번호 확인이 동일합니다.");
+      setPasswordDoubleCheck(true);
       return;
     } else {
       //console.log("비밀번호와 비밀번호의 확인이 동일합니다!");
-      setPasswordConfMsg("비밀번호와 비밀번호의 확인이 동일합니다!");
-      setPasswordDoubleCheck(true);
+      setPasswordConfMsg("비밀번호와 비밀번호 확인이 다릅니다.");
+      setPasswordDoubleCheck(false);
     }
   };
 
