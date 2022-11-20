@@ -13,7 +13,7 @@ const Gnb = () => {
                     type="text"
                     placeholder="상품을 검색해주세요."
                 />
-                <Link href="../searchPages/searchPage">
+                <Link  href="../searchPages/searchPage">
                     <button className='bg-blue-800 text-white rounded w-10 m-2 hover:bg-blue-400'>
                         검색
                     </button>
