@@ -1,8 +1,17 @@
 import Link from 'next/link'
 import React from 'react'
+
+
+
+
+
 function WebSearchPage() {
+
+    interface RInfo {
+        
+    }
   return (
-    <div className='absolute w-full h-full bg-indigo-900 overflow-auto'>
+    <div className='absolute w-full h-full bg-slate-900 overflow-auto'>
         <div className='absolute left-[45rem] top-[8rem] text-5xl font-extrabold h-auto'>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
                 관련 OOTD
@@ -33,7 +42,7 @@ function WebSearchPage() {
                        
                         <ul className='flex flex-wrap w-[75rem] my-5 z-0'>
                             <li>
-                                <div className='relative w-[16rem] h-[17rem] bg-blue-800 shadow-2xl shadow-black mx-5 rounded-3xl hover:opacity-80'>
+                                <div className='relative w-[16rem] h-[17rem] bg-slate-400 shadow-2xl shadow-black mx-5 rounded-3xl hover:opacity-80'>
 
                                     <img
                                         className='absolute left-4 top-4 border-4 w-[14rem] h-[15rem] border-black'

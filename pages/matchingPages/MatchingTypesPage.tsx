@@ -1,9 +1,26 @@
 import Link from 'next/link'
-import React from 'react'
+import React,{useState} from 'react'
+
 
 function MatchingTypesPage() {
+
+    interface MInfo{
+        type: string,
+        detail: string,
+        color: string, 
+        
+    }
+    const matchingImage : MInfo =
+        {type : "아우터",
+        detail : "후드집업",
+        color: "그레이"
+        }
+    
+        
+    
+
   return (
-    <div className='absolute w-full h-full bg-indigo-900 overflow-auto'>
+    <div className='absolute w-full h-full bg-slate-900  overflow-auto'>
         <div className=''>
             <div className='absolute left-64 top-44 -translate-x-1/2 -translate-y-1/2 text-5xl font-extrabold h-auto'>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
@@ -15,8 +32,9 @@ function MatchingTypesPage() {
         <div className='absolute left-[4rem] top-1/3 mx-10'>
             <div className='absolute rounded-3xl left-[12rem] w-[20rem] h-[16rem] bg-gray-300 bg-opacity-70'>
                 <ul className='absolute left-[3rem] top-[3rem] w-[14em] font-bold'>
-                    <li>분류 : 아우터 - 후드집업</li>  
-                    <li>색상 : 그레이</li>  
+                    <li>분류 : {matchingImage.type}</li>
+                    <li>세부 분류: {matchingImage.detail}</li>  
+                    <li>색상 : {matchingImage.color}</li>  
                     
                 </ul>
             </div>
@@ -34,7 +52,7 @@ function MatchingTypesPage() {
             <div className=''>
                 <Link href={"/"}>
                     <button className='absolute left-[5rem] top-[20rem] w-[20rem] h-[5rem] rounded-3xl font-semibold text-lg  
-                    transition ease-in-out delay-150 bg-purple-500  hover:-translate-y-1 hover:scale-110 hover:bg-fuchsia-500 duration-300
+                    transition ease-in-out delay-150 bg-slate-700  hover:-translate-y-1 hover:scale-110 hover:bg-fuchsia-500 duration-300
                     shadow-2xl shadow-black '>
                         
                         이미지 업로드 다시하기 
@@ -50,7 +68,7 @@ function MatchingTypesPage() {
         <div className='absolute left-[52rem] top-[5rem] w-auto '>
             <div className='rounded-3xl border-l-8 border-t-8 border-b-8  border-white w-[65rem] h-[65rem] my-10'>
                 
-                <div className='group/item1 absolute animate-bounce left-[8rem] top-44 w-52 h-48 bg-blue-800 shadow-2xl shadow-black m-auto rounded-3xl hover:animate-none hover:opacity-80'>
+                <div className='group/item1 absolute animate-bounce left-[8rem] top-44 w-52 h-48 bg-slate-600  shadow-2xl shadow-black m-auto rounded-3xl hover:animate-none hover:opacity-80'>
 
                     <div className='absolute -top-10 left-5'>
                         <span className='text-white font-extrabold text-3xl'>관련 OOTD</span>
@@ -119,6 +137,12 @@ function MatchingTypesPage() {
                     </div>
                 </div>
             </div>
+        </div>
+
+
+
+        <div>
+
         </div>
     </div>
   )

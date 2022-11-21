@@ -1,8 +1,12 @@
 import React from 'react'
 
+
+
+
+
 function SimularMatchingPage() {
   return (
-    <div className='absolute w-full h-full bg-indigo-900 overflow-auto'>
+    <div className='absolute w-full h-full bg-slate-900  overflow-auto'>
         <div className='absolute left-[45rem] top-[8rem] text-5xl font-extrabold h-auto'>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
                 유사한 상품

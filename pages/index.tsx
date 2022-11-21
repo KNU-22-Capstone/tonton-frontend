@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Gnb from '../components/Gnb'
 import Headers from '../components/Headers'
 import Link from 'next/link'
-
+import Row from './matchingPages/Row'
 const Home: NextPage = () => {
   return (
     <>
@@ -19,8 +19,16 @@ const Home: NextPage = () => {
           </button>
         </div>
       </Link>
-      
-      
+      <Row
+        
+        title="무신사 랭킹"
+        id="MusinsaN"/>
+      <Row title="하이버 랭킹"
+      id="HiverN" />
+      <Row title="룩핀"
+      id="LookpinN" />
+      <Row title="29CM 랭킹"
+      id="29cmN"/>
     </>
   )
 }
