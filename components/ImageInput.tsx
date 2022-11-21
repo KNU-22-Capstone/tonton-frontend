@@ -16,13 +16,17 @@ const ImageInput = () => {
     // @ts-ignore
     setImages(URL.createObjectURL(e.target.files[0]));
     setImageBoolean(true);
-    console.log(imageBoolean);
   };
+
+  const handleCancel = (e: any) => {
+    setImages("");
+    setImageBoolean(false);
+  }
 
   return (
     <div className="font-Pretendard ">
-      <div className="flex items-center justify-center flex-row">
-        <div className="m-3">
+      <div className="flex items-center justify-center flex-row m-5">
+        <div className="">
           <input
             ref={fileRef}
             name="file"
@@ -51,8 +55,8 @@ const ImageInput = () => {
             />
           )}
         </div>
-        <div className={`${imageBoolean ? '' : 'hidden'} flex flex-col justify-center items-center h-[600px]`}>
-          <div className="text-3xl mx-10 my-5">원하는 태그를 선택해 주세요.</div>
+        <div className={`${imageBoolean ? '' : 'hidden'} flex flex-col h-[600px] justify-center items-center ml-5`}>
+          <div className="text-3xl py-5">원하는 태그를 선택해 주세요.</div>
           <div className="grid grid-cols-5 gap-4 p-2">
             <button className=" bg-white border-gray-300 text-gray-400 rounded shadow border w-28 h-9">
               #모자
@@ -61,9 +65,9 @@ const ImageInput = () => {
               #상의
             </button>
           </div>
-          <div className="w-full font-bold">
+          <div className="w-full font-bold mt-auto">
             <button className="bg-slate-800 text-white w-full p-2 rounded justify-end">메칭하기</button>
-            <button className="bg-rose-700 text-white w-full p-2 rounded justify-end">취소하기</button>
+            <button onClick={handleCancel} className="bg-rose-700 text-white w-full p-2 rounded justify-end">취소하기</button>
           </div>
         </div>
       </div>
