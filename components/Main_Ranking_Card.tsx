@@ -4,8 +4,16 @@ import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from "../firebase/client";
 
 const Main_Rank_Card = () => {
-  const [names, setNames] = useState<string[]>([]);
+  interface data{
+    id: number,
+    name: string,
+    picture_URL: string,
+    site_URL: string,
+    price: number,
+    rank: number
+  }
 
+  const [names, setNames] = useState<string[]>([]);
   const arr: string[] = [];
   const usersCollectionRef = collection(db, "상품");
   useEffect(() => {
