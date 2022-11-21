@@ -7,6 +7,7 @@ export const SearchResult = () => {
 
 
     interface resultItem{
+        id:string,
         brandName : string,
         productName : string,
         productPrice : number,
@@ -17,7 +18,9 @@ export const SearchResult = () => {
         
     }
     const Products: resultItem [] =[
-        {brandName : "토피",
+        {
+        id: "1fs",
+        brandName : "토피",
         productName : "2WAY 스웻 후드집업(MELANGE GREY)",
         productPrice : 37000,
         productRating : 4.7,  
@@ -26,7 +29,9 @@ export const SearchResult = () => {
         productViews : 5677002
         },
         
-        {brandName : "무신사스탠다드",
+        {
+        id: "1f",
+        brandName : "무신사스탠다드",
         productName : "후디드 스웨트 집업[멜란지 그레이]",
         productPrice : 43900,
         productRating : 4.5,  
@@ -34,7 +39,9 @@ export const SearchResult = () => {
         productImg : "https://image.msscdn.net/images/goods_img/20190201/947088/947088_3_500.jpg?t=20200706103059",
         productViews : 866433
         },
-        {brandName : "토피",
+        {
+        id: "2f",
+        brandName : "토피",
         productName : "2WAY 스웻 후드집업(Black)",
         productPrice : 37000,
         productRating : 4.8,  
@@ -42,7 +49,9 @@ export const SearchResult = () => {
         productImg : "https://image.msscdn.net/images/goods_img/20210204/1778408/1778408_1_500.jpg?t=20220628160331",
         productViews : 344675
         },
-        {brandName : "SPAO",
+        {
+        id:"3f",
+        brandName : "SPAO",
         productName : "[프렌치테리]루즈핏 2-WAY 후드집업",
         productPrice : 32900,
         productRating : 4.7,  
@@ -50,7 +59,9 @@ export const SearchResult = () => {
         productImg : "https://image.msscdn.net/images/goods_img/20220718/2668986/2668986_70_500.jpg?t=20221108102949",
         productViews : 625433
         },
-        {brandName : "와릿이즌",
+        {
+        id:"4f",
+        brandName : "와릿이즌",
         productName : "엔젤 와펜 집업 후드 그레이",
         productPrice : 59250,
         productRating : 4.2,  
@@ -58,7 +69,9 @@ export const SearchResult = () => {
         productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
         productViews : 926353
         },
-        {brandName : "와릿이즌",
+        {
+        id:"5f",
+        brandName : "와릿이즌",
         productName : "엔젤 와펜 집업 후드 그레이",
         productPrice : 59250,
         productRating : 4.2,  
@@ -66,7 +79,9 @@ export const SearchResult = () => {
         productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
         productViews : 866433
         },
-        {brandName : "와릿이즌",
+        {
+        id:"6f",
+        brandName : "와릿이즌",
         productName : "엔젤 와펜 집업 후드 그레이",
         productPrice : 59250,
         productRating : 4.2,  
@@ -74,47 +89,9 @@ export const SearchResult = () => {
         productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
         productViews : 866433
         },
-        {brandName : "와릿이즌",
-        productName : "엔젤 와펜 집업 후드 그레이",
-        productPrice : 59250,
-        productRating : 4.2,  
-        productLike : 156673,
-        productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
-        productViews : 866433
-        },
-        {brandName : "와릿이즌",
-        productName : "엔젤 와펜 집업 후드 그레이",
-        productPrice : 59250,
-        productRating : 4.2,  
-        productLike : 156673,
-        productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
-        productViews : 866433
-        },
-        {brandName : "와릿이즌",
-        productName : "엔젤 와펜 집업 후드 그레이",
-        productPrice : 59250,
-        productRating : 4.2,  
-        productLike : 156673,
-        productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
-        productViews : 866433
-        },
-        {brandName : "와릿이즌",
-        productName : "엔젤 와펜 집업 후드 그레이",
-        productPrice : 59250,
-        productRating : 4.2,  
-        productLike : 156673,
-        productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
-        productViews : 866433
-        },
-        {brandName : "와릿이즌",
-        productName : "엔젤 와펜 집업 후드 그레이",
-        productPrice : 59250,
-        productRating : 4.2,  
-        productLike : 156673,
-        productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
-        productViews : 866433
-        },
-        {brandName : "와릿이즌",
+        {
+        id:"7f",
+        brandName : "와릿이즌",
         productName : "엔젤 와펜 집업 후드 그레이",
         productPrice : 59250,
         productRating : 4.2,  
@@ -122,6 +99,7 @@ export const SearchResult = () => {
         productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
         productViews : 866433
         }
+       
     ]
 
 
