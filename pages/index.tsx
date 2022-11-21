@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Gnb from '../components/Gnb'
 import Headers from '../components/Headers'
 import ImageInput from '../components/ImageInput'
+import Main_Rank_Card from '../components/Main_Ranking_Card'
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <Headers />
       <Gnb />
       <ImageInput />
+      <Main_Rank_Card />
     </>
   )
 }
