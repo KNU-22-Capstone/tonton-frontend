@@ -47,11 +47,11 @@ const ImageInput = () => {
               src={images}
               width={600}
               height={600}
-              className="my-10"
+              className="my-10 object-cover"
             />
           )}
         </div>
-        <div className="flex flex-col justify-center items-center w-auto">
+        <div className={`${imageBoolean ? '' : 'hidden'} flex flex-col justify-center items-center h-[600px]`}>
           <div className="text-3xl mx-10 my-5">원하는 태그를 선택해 주세요.</div>
           <div className="grid grid-cols-5 gap-4 p-2">
             <button className=" bg-white border-gray-300 text-gray-400 rounded shadow border w-28 h-9">
@@ -60,6 +60,10 @@ const ImageInput = () => {
             <button className=" bg-white border-blue-400 text-blue-400 rounded shadow border w-28 h-9">
               #상의
             </button>
+          </div>
+          <div className="w-full font-bold">
+            <button className="bg-slate-800 text-white w-full p-2 rounded justify-end">메칭하기</button>
+            <button className="bg-rose-700 text-white w-full p-2 rounded justify-end">취소하기</button>
           </div>
         </div>
       </div>
