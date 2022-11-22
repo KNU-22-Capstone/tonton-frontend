@@ -1,7 +1,7 @@
 import React, { useCallback, useDebugValue, useState } from "react";
 import { useEffect } from "react";
 import { collection, getDocs, where, query } from "firebase/firestore";
-import { db } from "../firebase/client";
+import { db } from "../../firebase/client";
 import { DocumentData } from "firebase/firestore";
 
 const Main_Rank_Card = () => {
