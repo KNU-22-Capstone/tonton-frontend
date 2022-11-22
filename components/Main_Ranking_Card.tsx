@@ -6,20 +6,20 @@ import { DocumentData } from "firebase/firestore";
 
 const Main_Rank_Card = () => {
   type clothType = {
-   link : string
-   price : string
-   title : string
+    link: string;
+    price: string;
+    title: string;
+    imageIRL: string;
   };
 
   const [clothes, setClothes] = useState<clothType[]>([]);
-  const [clothesName, setClothesName] = useState<string[]>([]);
   const arr: clothType[] = [];
-  const usersCollectionRef = collection(db, "테스트");
+  const usersCollectionRef = collection(db, "테스트2");
 
   useEffect(() => {
     fetchData();
-  }, [])
-  
+  }, []);
+
   const fetchData = async () => {
     const data = await getDocs(usersCollectionRef);
     data.forEach((doc: DocumentData) => {
@@ -29,13 +29,14 @@ const Main_Rank_Card = () => {
   };
 
   return (
-    <div className="font-Pretendard flex flex-row justify-center items-center columns-2 m-10">
+    <div className="font-Pretendard flex flex-row justify-center items-center m-10">
       <div>
-          {clothes.map((cloth, i) => (
-            <div key={i}>{`이름: ${cloth.title} 가격: ${cloth.price} 주소: ${cloth.link}`}</div>
-          ))}
+        {clothes.map((cloth, i) => (
+          <div
+            key={i}
+          >{`이름: ${cloth.title} 가격: ${cloth.price} 주소: ${cloth.link}`}</div>
+        ))}
       </div>
-      {/* <div>222</div> */}
     </div>
   );
 };
