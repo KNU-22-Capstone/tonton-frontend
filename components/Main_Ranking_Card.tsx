@@ -2,42 +2,40 @@ import React, { useCallback, useDebugValue, useState } from "react";
 import { useEffect } from "react";
 import { collection, getDocs, where, query } from "firebase/firestore";
 import { db } from "../firebase/client";
+import { DocumentData } from "firebase/firestore";
 
 const Main_Rank_Card = () => {
-  interface data{
-    id: number,
-    name: string,
-    picture_URL: string,
-    site_URL: string,
-    price: number,
-    rank: number
-  }
+  type clothType = {
+   link : string
+   price : string
+   title : string
+  };
 
-  const [names, setNames] = useState<string[]>([]);
-  const arr: string[] = [];
-  const usersCollectionRef = collection(db, "상품");
+  const [clothes, setClothes] = useState<clothType[]>([]);
+  const [clothesName, setClothesName] = useState<string[]>([]);
+  const arr: clothType[] = [];
+  const usersCollectionRef = collection(db, "테스트");
+
   useEffect(() => {
     fetchData();
-    //console.log(arr);
-  }, []);
-
+  }, [])
+  
   const fetchData = async () => {
     const data = await getDocs(usersCollectionRef);
-    data.forEach((doc) => {
-      arr.push(doc.data().name);
-      console.log(doc.data())
+    data.forEach((doc: DocumentData) => {
+      arr.push(doc.data());
     });
-    setNames(arr)
+    setClothes(arr);
   };
+
   return (
-    <div>
-      {
-        <ul>
-          {names.map((name) => (
-            <li key={name}>{name}</li>
+    <div className="font-Pretendard flex flex-row justify-center items-center columns-2 m-10">
+      <div>
+          {clothes.map((cloth, i) => (
+            <div key={i}>{`이름: ${cloth.title} 가격: ${cloth.price} 주소: ${cloth.link}`}</div>
           ))}
-        </ul>
-      }
+      </div>
+      {/* <div>222</div> */}
     </div>
   );
 };
