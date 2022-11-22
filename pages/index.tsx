@@ -2,8 +2,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Gnb from '../components/Gnb'
 import Headers from '../components/Headers'
+
 import ImageInput from '../components/ImageInput'
 import Main_Rank_Card from '../components/Main_Ranking_Card'
+
+import Link from 'next/link'
+import Row from '../components/Row'
 
 const Home: NextPage = () => {
   return (
@@ -13,8 +17,26 @@ const Home: NextPage = () => {
       </Head>
       <Headers />
       <Gnb />
+
       <ImageInput />
       <Main_Rank_Card />
+      <Link  href="../matchingPages/MatchingTypesPage">
+        <div className='bg-blue-800 text-white font-bold w-20 text-center relative left-1/2 rounded-lg'>
+          <button>매칭하기
+          </button>
+        </div>
+      </Link>
+      <Row
+        
+        title="무신사 랭킹"
+        id="MusinsaN"/>
+      <Row title="하이버 랭킹"
+      id="HiverN" />
+      <Row title="룩핀"
+      id="LookpinN" />
+      <Row title="29CM 랭킹"
+      id="29cmN"/>
+
     </>
   )
 }
