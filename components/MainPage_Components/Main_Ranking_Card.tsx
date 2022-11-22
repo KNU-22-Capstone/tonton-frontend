@@ -1,6 +1,6 @@
 import React, { useCallback, useDebugValue, useState } from "react";
 import { useEffect } from "react";
-import { collection, getDocs, where, query } from "firebase/firestore";
+import { collection, getDocs, where, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../../firebase/client";
 import { DocumentData } from "firebase/firestore";
 
@@ -21,7 +21,13 @@ const Main_Rank_Card = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await getDocs(usersCollectionRef);
+    const q  = await query(
+        usersCollectionRef,
+        //where("tag", "==", "무신사"),
+        orderBy("title", "asc"),
+    );
+
+    const data = await getDocs(q);
     data.forEach((doc: DocumentData) => {
       arr.push(doc.data());
     });
@@ -34,7 +40,7 @@ const Main_Rank_Card = () => {
         {clothes.map((cloth, i) => (
           <div
             key={i}
-          >{`이름: ${cloth.title} 가격: ${cloth.price} 주소: ${cloth.link}`}</div>
+          >{`이름: ${cloth.title} 가격: ${cloth.price}`}</div>
         ))}
       </div>
     </div>
