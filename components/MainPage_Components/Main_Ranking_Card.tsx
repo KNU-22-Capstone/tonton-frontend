@@ -25,6 +25,7 @@ const Main_Rank_Card = () => {
         usersCollectionRef,
         //where("tag", "==", "무신사"),
         orderBy("title", "asc"),
+        limit(10)
     );
 
     const data = await getDocs(q);
