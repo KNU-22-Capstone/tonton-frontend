@@ -85,7 +85,7 @@ function MatchingTypesPage() {
 
 
 
-        <div>
+        <div className='relative top-[50rem]'>
            <MatcingRow 
            title="톤온톤 톤인톤 매칭 결과"
            id="ton"/>

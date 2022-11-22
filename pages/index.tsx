@@ -19,22 +19,21 @@ const Home: NextPage = () => {
       <Gnb />
 
       <ImageInput />
-      <Main_Rank_Card />
       <Link  href="../matchingPages/MatchingTypesPage">
         <div className='bg-blue-800 text-white font-bold w-20 text-center relative left-1/2 rounded-lg'>
           <button>매칭하기
           </button>
         </div>
       </Link>
-      <Row
+      <Main_Rank_Card
         
         title="무신사 랭킹"
         id="MusinsaN"/>
-      <Row title="하이버 랭킹"
+      <Main_Rank_Card title="하이버 랭킹"
       id="HiverN" />
-      <Row title="룩핀"
+      <Main_Rank_Card title="룩핀"
       id="LookpinN" />
-      <Row title="29CM 랭킹"
+      <Main_Rank_Card title="29CM 랭킹"
       id="29cmN"/>
 
     </>
