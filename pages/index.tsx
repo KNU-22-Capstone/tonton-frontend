@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Gnb from '../components/Gnb'
 import Headers from '../components/Headers'
 import Link from 'next/link'
-import Row from './matchingPages/Row'
+import Row from '../components/Row'
 const Home: NextPage = () => {
   return (
     <>
