@@ -18,7 +18,7 @@ const login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(id, password);
-    postTest()
+    postTest();
   };
 
   const postTest = async ()=>{
