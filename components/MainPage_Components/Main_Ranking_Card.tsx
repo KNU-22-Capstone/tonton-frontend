@@ -21,15 +21,19 @@ type MyCompProps = {
 
 const Main_Rank_Card = (props:MyCompProps) => {
   type clothType = {
-    link: string;
-    price: string;
-    title: string;
-    imageIRL: string;
+    detail_tag: string;
+    major_tag: string;
+    name: string;
+    picture_URL: string;
+    price: number;
+    site_URL: string;
+    site_name: string;
+    views: number;
   };
 
   const [clothes, setClothes] = useState<clothType[]>([]);
   const arr: clothType[] = [];
-  const usersCollectionRef = collection(db, "테스트2");
+  const usersCollectionRef = collection(db, "의류");
 
   useEffect(() => {
     fetchData();
@@ -39,7 +43,8 @@ const Main_Rank_Card = (props:MyCompProps) => {
     const q  = await query(
         usersCollectionRef,
         //where("tag", "==", "무신사"),
-        orderBy("title", "asc"),
+        //orderBy("price", "asc"),
+        limit(10)
     );
 
     const data = await getDocs(q);
@@ -89,17 +94,19 @@ const Main_Rank_Card = (props:MyCompProps) => {
                     <div className='absolute left-2 top-4 w-5 text-center border border-red-400 bg-black text-white'>
                         {index+1}
                     </div>
-                    
+                    <img
+                    className="w-[16rem]"
+                    src={pro.picture_URL}/>
                    
                     <div className='flex flex-col  mx-4'>
                         <span className='font-bold text-sm'>
-                            {pro.title}
+                            {pro.name}
                         </span>
                         <span className='text-xl'>
                             {pro.price}
                         </span>
                         <button>
-                          <Link href={`http://${pro.link}`}>
+                          <Link href={`http://${pro.site_URL}`}>
                             자세히 보기
                           </Link>
                         </button>

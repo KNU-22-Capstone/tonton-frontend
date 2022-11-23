@@ -8,7 +8,6 @@ interface resultItemProps{
     productLike : number,
     productImg : string,
     productViews : number,
-
     setModalOpen : Dispatch<SetStateAction<boolean>>
 }
 
