@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 
-import Gnb from '../components/Gnb'
-import Headers from '../components/Headers'
+import Gnb from '../../components/Gnb'
+import Headers from '../../components/Headers'
+import Link from 'next/link'
 
 interface CommunityPost{
     postLike : number,
@@ -67,7 +68,55 @@ function Community() {
             postImageTop:'https://image.msscdn.net/images/goods_img/20210824/2082373/2082373_1_220.jpg',
             postImageBottom:'https://image.msscdn.net/images/goods_img/20220922/2812750/2812750_1_220.jpg',
             postImageShoes:'https://image.msscdn.net/images/goods_img/20220824/2737460/2737460_1_220.jpg',
-        }
+        },
+        {
+            postLike : 456,
+            postName : '오늘의 코디에욤',
+            postTag : '사용자 추천 코디',
+            postTime: 6,
+            postWriter : '강수민',
+        
+            postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
+            postImageTop:'https://image.msscdn.net/images/goods_img/20210824/2082373/2082373_1_220.jpg',
+            postImageBottom:'https://image.msscdn.net/images/goods_img/20220922/2812750/2812750_1_220.jpg',
+            postImageShoes:'https://image.msscdn.net/images/goods_img/20220824/2737460/2737460_1_220.jpg',
+        },
+        {
+            postLike : 456,
+            postName : '오늘의 코디에욤',
+            postTag : '사용자 추천 코디',
+            postTime: 6,
+            postWriter : '강수민',
+        
+            postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
+            postImageTop:'https://image.msscdn.net/images/goods_img/20210824/2082373/2082373_1_220.jpg',
+            postImageBottom:'https://image.msscdn.net/images/goods_img/20220922/2812750/2812750_1_220.jpg',
+            postImageShoes:'https://image.msscdn.net/images/goods_img/20220824/2737460/2737460_1_220.jpg',
+        },
+        {
+            postLike : 456,
+            postName : '오늘의 코디에욤',
+            postTag : '사용자 추천 코디',
+            postTime: 6,
+            postWriter : '강수민',
+        
+            postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
+            postImageTop:'https://image.msscdn.net/images/goods_img/20210824/2082373/2082373_1_220.jpg',
+            postImageBottom:'https://image.msscdn.net/images/goods_img/20220922/2812750/2812750_1_220.jpg',
+            postImageShoes:'https://image.msscdn.net/images/goods_img/20220824/2737460/2737460_1_220.jpg',
+        },
+        {
+            postLike : 456,
+            postName : '오늘의 코디에욤',
+            postTag : '사용자 추천 코디',
+            postTime: 6,
+            postWriter : '강수민',
+        
+            postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
+            postImageTop:'https://image.msscdn.net/images/goods_img/20210824/2082373/2082373_1_220.jpg',
+            postImageBottom:'https://image.msscdn.net/images/goods_img/20220922/2812750/2812750_1_220.jpg',
+            postImageShoes:'https://image.msscdn.net/images/goods_img/20220824/2737460/2737460_1_220.jpg',
+        },
     ])
 
   return (
@@ -83,11 +132,11 @@ function Community() {
             </div>
 
             <img
-                className='object-none object-center w-full h-[17rem]'
-                src="https://pixabay.com/get/ga9985da4301528747411451d7d7aa94f960c840b2c1f59ef8cf56ce562dae89f7d52302eab5a4d196d7895cebf3212e9.png" 
+                className='object-cover w-full h-[17rem]'
+                src="https://cdn.pixabay.com/photo/2013/07/12/18/20/shoes-153310_960_720.png" 
             />
         </div>
-        <div className='flex absolute h-full w-full pl-[15rem]  bg-slate-50'>
+        <div className='flex absolute h-full w-full pl-[15rem]  '>
             <div className='flex absolute -top-[5rem]'>
                     <div className='mx-[3rem] mt-[2rem] w-[25rem] h-[30rem] bg-slate-100 divide-y-4 divide-slate-400/25 shadow-xl'>
                         <div className='absolute text-3xl text-white left-10 -top-[2rem]'>
@@ -133,9 +182,12 @@ function Community() {
                                     </div>
                                     
                                     <div className='m-3'>
-                                        <button className='bg-blue-400 w-[5rem] rounded-2xl'>
-                                            글쓰기
-                                        </button>
+                                        <Link href="./CommunityPostWrite">
+                                            <button className='bg-blue-400 w-[5rem] rounded-2xl'>
+                                                글쓰기
+                                            </button>
+                                        </Link>
+                                        
                                     </div>
                                 </div>
                                 

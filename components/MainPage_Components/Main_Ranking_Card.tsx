@@ -31,7 +31,11 @@ const Main_Rank_Card = (props:MyCompProps) => {
     views: number;
   };
 
-  const [clothes, setClothes] = useState<clothType[]>([]);
+  const [MusinsaClothes, setMusinsaClothes] = useState<clothType[]>([]);
+  const [HiverClothes, setHiverClothes]=useState<clothType[]>([]);
+  const [LookPinClothes, setLookPinClothes]=useState<clothType[]>([]);
+  const [CMClothes, setCMClothes]=useState<clothType[]>([]);
+
   const arr: clothType[] = [];
   const usersCollectionRef = collection(db, "의류");
 
@@ -40,18 +44,55 @@ const Main_Rank_Card = (props:MyCompProps) => {
   }, []);
 
   const fetchData = async () => {
-    const q  = await query(
+    if(props.id=="MusinsaN")
+    {
+      const Muq  = await query(
+          usersCollectionRef,
+          where("site_name", "==", "musinsa"),
+          //orderBy("price", "asc"),
+          limit(10)
+      );
+      
+      const data = await getDocs(Muq);
+      data.forEach((doc: DocumentData) => {
+        arr.push(doc.data());
+      });
+      setMusinsaClothes(arr);
+    }
+    else if(props.id=="HiverN"){
+      const Hiq  = await query(
         usersCollectionRef,
-        //where("tag", "==", "무신사"),
+        where("site_name", "==", "hiver"),
         //orderBy("price", "asc"),
         limit(10)
-    );
+      );
+      
+      const data = await getDocs(Hiq);
+      data.forEach((doc: DocumentData) => {
+        arr.push(doc.data());
+      });
+      setMusinsaClothes(arr);
+    }
+    else if(props.id=="LookpinN"){
+      const Loq  = await query(
+        usersCollectionRef,
+        where("site_name", "==", "lookpin"),
+        //orderBy("price", "asc"),
+        limit(10)
+      );
+      
+      const data = await getDocs(Loq);
+      data.forEach((doc: DocumentData) => {
+        arr.push(doc.data());
+      });
+      setMusinsaClothes(arr);
+    }
+    
 
-    const data = await getDocs(q);
-    data.forEach((doc: DocumentData) => {
-      arr.push(doc.data());
-    });
-    setClothes(arr);
+
+    
+
+    
   };
 
   return (
@@ -88,7 +129,7 @@ const Main_Rank_Card = (props:MyCompProps) => {
           className="h-[30rem] "
         >
           <div id={props.id} className="flex overflow-x-scroll overflow-y-hidden scroll-smooth">
-            {clothes.map((pro,index) => (
+            {MusinsaClothes.map((pro,index) => (
               <SwiperSlide>
                 <div className=' transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 w-[16rem] h-[28rem] bg-white rounded-3xl shadow-lg shadow-gray-300'>
                     <div className='absolute left-2 top-4 w-5 text-center border border-red-400 bg-black text-white'>
@@ -106,7 +147,7 @@ const Main_Rank_Card = (props:MyCompProps) => {
                             {pro.price}
                         </span>
                         <button>
-                          <Link href={`http://${pro.site_URL}`}>
+                          <Link href={`${pro.site_URL}`}>
                             자세히 보기
                           </Link>
                         </button>
