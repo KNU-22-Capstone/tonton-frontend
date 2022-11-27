@@ -1,18 +1,23 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { useCallback, useRef, useState } from "react";
-
+import MatchingTypesPage from "../../pages/matchingPages/MatchingTypesPage";
 const ImageInput = () => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string>();
   const [imageBoolean, setImageBoolean] = useState<boolean>(false);
+  const [tagSelected,settagSelected]=useState<boolean>(false);
+
   const TagButtonName: string[] = ["모자", "상의", "하의", "신발", "아우터"];
 
   const handleClick = () => {
     fileRef?.current?.click();
+    
   };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // @ts-ignore
     setImages(URL.createObjectURL(e.target.files[0]));
+    
     setImageBoolean(true);
   };
 
@@ -22,7 +27,8 @@ const ImageInput = () => {
   };
 
   const handle_TagButtonClock = () => {
-    
+    settagSelected(true);
+
   }
 
   return (
@@ -62,6 +68,7 @@ const ImageInput = () => {
               height={600}
               className="my-10 object-cover"
             />
+            
           )}
         </div>
         <div
@@ -83,9 +90,18 @@ const ImageInput = () => {
             </button>
           </div>
           <div className="w-full font-bold mt-auto">
-            <button className="bg-slate-800 text-white w-full p-2 rounded">
-              메칭하기
-            </button>
+            <Link  href={{
+              pathname:'../matchingPages/MatchingTypesPage',
+              query: { currentName: JSON.stringify(images) }/* 전달할 props를 넣어주고 현재 obj가 object인 상태이기 때문에 문자열로 바꿔주기위해 JSON.stringify()를 사용.*/,
+              
+              }}
+              as={`/view/[id]`}/*props 전달할 때 url 뒤에 표시 */
+              >
+              <button className="bg-slate-800 text-white w-full p-2 rounded">
+                메칭하기
+              </button>
+              
+            </Link>
             <button
               onClick={handleCancel}
               className="bg-rose-700 text-white w-full p-2 rounded"

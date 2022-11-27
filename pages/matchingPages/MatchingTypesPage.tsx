@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React,{useState, useEffect} from 'react'
+import { useRouter } from "next/router"
 
 import MatcingRow from "../../components/MatchingRow"
 export interface ProdInfo{
@@ -15,9 +16,11 @@ export interface ProdInfo{
     
 }
 
-function MatchingTypesPage() {
-     
-   const [MaImage, setMaI] = useState<string>("https://image.msscdn.net/images/goods_img/20190201/947088/947088_3_500.jpg?t=20200706103059")
+function MatchingTypesPage( ) {
+    const router = useRouter()
+    const { currentName } = router.query
+    
+   const [MaImage, setMaI] = useState<string>()
 
     useEffect(() => {
         
@@ -52,7 +55,7 @@ function MatchingTypesPage() {
         </div>
         <div className='absolute left-[4rem] top-1/3 mx-10'>
             <div className='absolute rounded-3xl left-[12rem] w-[20rem] h-[16rem] bg-gray-300 bg-opacity-70'>
-                <ul className='absolute left-[3rem] top-[3rem] w-[14em] font-bold'>
+                <ul className='absolute left-[3rem] top-[3rem] w-[14em] font-bold text-lg'>
                     <li>분류 : {matchingImage.type}</li>
                     <li>세부 분류: {matchingImage.detail}</li>  
                     <li>색상 : {matchingImage.color}</li>  

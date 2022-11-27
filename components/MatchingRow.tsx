@@ -374,7 +374,7 @@ function Row(props:MyCompProps) {
 
   return (
         <section className="ml-20">
-        <div className='text-xl font-bold'>
+        <div className='text-3xl font-bold text-white m-5'>
             <h2>{props.title}</h2>
         </div>
         
@@ -404,7 +404,7 @@ function Row(props:MyCompProps) {
           // pagination={{ clickable: false }}
           className="h-[30rem] "
         >
-          <div id={props.id} className="flex overflow-x-scroll overflow-y-hidden scroll-smooth">
+          <div id={props.id} className="flex overflow-x-scroll overflow-y-hidden scroll-smooth ">
             {MainSwiper.map((pro,index) => (
               <SwiperSlide>
                 <div className=' transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 w-[16rem] h-[28rem] bg-white rounded-3xl shadow-lg shadow-gray-300'>
@@ -415,7 +415,7 @@ function Row(props:MyCompProps) {
                     <img
                     key={pro.id}
                     style={{ padding: "10px 0" }}
-                    className=" w-full max-h-80 transition-transform rounded-xl "
+                    className=" w-full max-h-80 transition-transform rounded-3xl "
                     src={pro.productImg }
                     />
                     <div className='flex flex-col  mx-4'>
