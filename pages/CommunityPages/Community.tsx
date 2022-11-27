@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Head from 'next/head'
 
 import Gnb from '../../components/Gnb'
@@ -20,6 +20,23 @@ interface CommunityPost{
 
 function Community() {
 
+    const [show, setShow] = useState<boolean>(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            console.log("window.scrollY", window.scrollY);
+            if (window.scrollY > 400) {
+              setShow(true);
+            } else {
+              setShow(false);
+            }
+          });
+      
+          return () => {
+            window.removeEventListener("scroll", () => {});
+          };
+    }, [])
+    
     const [comPostArr, setcomPostArr] = useState<CommunityPost[]>([
         {
             postLike : 456,
@@ -136,15 +153,14 @@ function Community() {
                 src="https://cdn.pixabay.com/photo/2013/07/12/18/20/shoes-153310_960_720.png" 
             />
         </div>
-        <div className='flex absolute h-full w-full pl-[15rem]  '>
-            <div className='flex absolute -top-[5rem]'>
-                    <div className='mx-[3rem] mt-[2rem] w-[25rem] h-[30rem] bg-slate-100 divide-y-4 divide-slate-400/25 shadow-xl'>
-                        <div className='absolute text-3xl text-white left-10 -top-[2rem]'>
-                            <span>톤톤 커뮤니티에 오신 것을 환영^^</span>
-                        </div>
-
+        <div className='flex relative h-full w-full pl-[20rem]  '>
+            <div className='flex relative -top-[5rem]'>
+                    <div className={` mx-[3rem] mt-[2rem] w-[25rem] h-[30rem] bg-slate-100 divide-y-4 divide-slate-400/25 border border-gray-200 shadow-xl ${
+                        show && "fixed -top-[2rem]"}`}>
                         <div className='h-[10rem]'>
-                            <button className='relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl'>로그인</button>
+                            <button className='relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl'>
+                                로그인
+                            </button>
                         </div>
                         <div className='flex-row pl-5'>
                             <div className='text-gray-400 mt-3'>
@@ -164,17 +180,17 @@ function Community() {
                                     <span>
                                         커뮤니티
                                     </span> 
-                                </div>
-                                <div className='pl-5 my-3'>
-                                    <button>
-                                        사용자 추천 코디
-                                    </button>
-                                </div>
+                            </div>
+                            <div className='pl-5 my-3'>
+                                <button>
+                                    사용자 추천 코디
+                                </button>
                             </div>
                         </div>
+                    </div>
 
-                    <div className='flex-col'>
-                        <div className='mt-[2rem] w-[55rem] bg-slate-100 shadow-xl'>
+                    <div className='flex-col absolute left-[30rem]'>
+                        <div className='mt-[2rem] w-[55rem] bg-slate-100 border border-gray-200  shadow-xl'>
                             <div className='flex-col space-y-[1rem]'>
                                 <div className='flex justify-between '>
                                     <div className='m-3'>
@@ -210,7 +226,7 @@ function Community() {
 
                             
                         </div>
-                        <div className='flex-col mt-[2rem] w-[55rem] h-full bg-slate-100 shadow-xl divide-y-2 divide-slate-400/25'>
+                        <div className='flex-col mt-[2rem] w-[55rem] h-full bg-slate-100 shadow-xl divide-y-2 border border-gray-200  divide-slate-400/25'>
                             {comPostArr.map(post=>(
                                 <div className='flex w-full h-[10rem]'>
                                     <div className='w-[6rem] h-[6rem]'>

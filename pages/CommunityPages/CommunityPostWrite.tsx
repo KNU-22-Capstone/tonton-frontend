@@ -5,6 +5,7 @@ import Headers from '../../components/Headers'
 import Image from "next/image"
 
 
+
 function CommunityPostWrite() {
     const fileRef = useRef<HTMLInputElement>(null);
     const [images, setImages] = useState<string>();
@@ -222,7 +223,7 @@ function CommunityPostWrite() {
                             
                         
                         </div>
-                        <div className='flex-col mx-[3rem] mt-[2rem] w-[60rem] h-full bg-slate-100 shadow-xl'>
+                        <div className='flex-col mx-[3rem] mt-[2rem] w-[60rem] h-auto mb-[10rem] bg-slate-100 shadow-xl'>
                             <div className='pt-[2rem] px-10 w-full '>
                                 <input
                                 className='border w-full h-[3rem] text-lg px-7'
@@ -235,7 +236,7 @@ function CommunityPostWrite() {
                                 
                                 />
                             </div>
-                            <div className='pt-[2rem] px-10 w-full '>
+                            <div className='pt-[2rem] px-10 w-full pb-[3rem] '>
                                 <input
                                 className='border w-full h-[20rem] text-lg px-7 text-start'
                                 type='text'
@@ -246,6 +247,12 @@ function CommunityPostWrite() {
                                 
                                 
                                 />
+                            </div>
+
+                            <div className='flex flex-row-reverse m-[2rem] pb-[2rem]'>
+                                <button className='bg-slate-500 rounded-lg w-[8rem] text-white'>
+                                    작성하기
+                                </button>
                             </div>
 
                         </div>
