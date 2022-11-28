@@ -13,8 +13,6 @@ module.exports = {
         Pretendard: ["Pretendard", ...defaultTheme.fontFamily.sans],
       },
     },
-  },
-  theme: {
     keyframes: {
       bounce: {
         '0%, 100%': {

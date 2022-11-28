@@ -39,11 +39,16 @@ const Main_Rank_Card = (props:MyCompProps) => {
   const arr: clothType[] = [];
   const usersCollectionRef = collection(db, "의류");
 
+  const formatter = new Intl.NumberFormat('ko',{
+    style: 'currency',
+    currency: 'krw'
+  })
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
+  const fetchData = async () => {  
     if(props.id=="MusinsaN")
     {
       const Muq  = await query(
@@ -88,17 +93,12 @@ const Main_Rank_Card = (props:MyCompProps) => {
       setMusinsaClothes(arr);
     }
     
-
-
-    
-
-    
   };
 
   return (
 
-    <section className="ml-20">
-        <div className='text-xl font-bold'>
+    <section className="ml-20 font-Pretendard">
+        <div className='text-xl font-bold mb-5'>
             <h2>{props.title}</h2>
         </div>
         
@@ -139,19 +139,16 @@ const Main_Rank_Card = (props:MyCompProps) => {
                     className="w-[16rem]"
                     src={pro.picture_URL}/>
                    
-                    <div className='flex flex-col  mx-4'>
+                    <div className='flex flex-col mx-4'>
                         <span className='font-bold text-sm'>
                             {pro.name}
                         </span>
                         <span className='text-xl'>
-                            {pro.price}
+                            {formatter.format(pro.price)}
                         </span>
-                        <button>
-                          <Link href={`${pro.site_URL}`}>
+                          <Link className="text-blue-400" href={`${pro.site_URL}`}>
                             자세히 보기
                           </Link>
-                        </button>
-                        
                     </div>
                 </div>
                 
