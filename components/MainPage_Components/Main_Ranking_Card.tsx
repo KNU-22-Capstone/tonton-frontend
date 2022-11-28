@@ -48,50 +48,64 @@ const Main_Rank_Card = (props:MyCompProps) => {
     fetchData();
   }, []);
 
+  const inputDaata =  async (q: any) => {
+    const data = await getDocs(q);
+    data.forEach((doc: DocumentData) => {
+      arr.push(doc.data());
+    });
+    setMusinsaClothes(arr);
+  }
+
   const fetchData = async () => {  
-    if(props.id=="MusinsaN")
-    {
-      const Muq  = await query(
+    switch(props.id) {
+      case "MusinsaN":
+        const Muq  = query(
           usersCollectionRef,
           where("site_name", "==", "musinsa"),
           //orderBy("price", "asc"),
           limit(10)
-      );
-      
-      const data = await getDocs(Muq);
-      data.forEach((doc: DocumentData) => {
-        arr.push(doc.data());
-      });
-      setMusinsaClothes(arr);
+        );
+        await inputDaata(Muq)
+
+      case "HiverN":
+        const Hiq  = query(
+          usersCollectionRef,
+          where("site_name", "==", "hiver"),
+          //orderBy("price", "asc"),
+          limit(10)
+        );
+        await inputDaata(Hiq)
+
+      case "LookpinN":
+        const Loq  = query(
+          usersCollectionRef,
+          where("site_name", "==", "lookpin"),
+          //orderBy("price", "asc"),
+          limit(10)
+        );
+        await inputDaata(Loq)
     }
-    else if(props.id=="HiverN"){
-      const Hiq  = await query(
-        usersCollectionRef,
-        where("site_name", "==", "hiver"),
-        //orderBy("price", "asc"),
-        limit(10)
-      );
+
+    // if(props.id=="MusinsaN")
+    // {
       
-      const data = await getDocs(Hiq);
-      data.forEach((doc: DocumentData) => {
-        arr.push(doc.data());
-      });
-      setMusinsaClothes(arr);
-    }
-    else if(props.id=="LookpinN"){
-      const Loq  = await query(
-        usersCollectionRef,
-        where("site_name", "==", "lookpin"),
-        //orderBy("price", "asc"),
-        limit(10)
-      );
+    //   const data = await getDocs(Muq);
+    //   data.forEach((doc: DocumentData) => {
+    //     arr.push(doc.data());
+    //   });
+    //   setMusinsaClothes(arr);
+    // }
+    // else if(props.id=="HiverN"){
+    
       
-      const data = await getDocs(Loq);
-      data.forEach((doc: DocumentData) => {
-        arr.push(doc.data());
-      });
-      setMusinsaClothes(arr);
-    }
+    //   const data = await getDocs(Hiq);
+    //   data.forEach((doc: DocumentData) => {
+    //     arr.push(doc.data());
+    //   });
+    //   setMusinsaClothes(arr);
+    // }
+    // else if(props.id=="LookpinN"){
+    // }
     
   };
 
@@ -139,7 +153,7 @@ const Main_Rank_Card = (props:MyCompProps) => {
                     className="w-[16rem]"
                     src={pro.picture_URL}/>
                    
-                    <div className='flex flex-col mx-4'>
+                    <div className='flex flex-col mx-2 my-2'>
                         <span className='font-bold text-sm'>
                             {pro.name}
                         </span>

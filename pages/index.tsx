@@ -20,16 +20,16 @@ const Home: NextPage = () => {
       <Gnb />
 
       <ImageInput />
-      {/* <Link  href="../matchingPages/MatchingTypesPage">
+      <Link  href="../matchingPages/MatchingTypesPage">
         <div className='bg-blue-800 text-white font-bold w-20 text-center relative left-1/2 rounded-lg'>
           <button>매칭하기
           </button>
         </div>
-      </Link> */}
+      </Link>
       <Main_Rank_Card title="무신사 랭킹" id="MusinsaN"/>
       <Main_Rank_Card title="하이버 랭킹" id="HiverN" />
       <Main_Rank_Card title="룩핀" id="LookpinN" />
-      <Main_Rank_Card title="29CM 랭킹" id="29cmN"/>
+      {/* <Main_Rank_Card title="29CM 랭킹" id="29cmN"/> */}
     </>
   )
 }

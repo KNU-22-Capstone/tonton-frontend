@@ -3,6 +3,7 @@ import React,{useState, useEffect} from 'react'
 import { useRouter } from "next/router"
 
 import MatcingRow from "../../components/MatchingRow"
+import Head from 'next/head'
 export interface ProdInfo{
     
     id:string,
@@ -44,7 +45,11 @@ function MatchingTypesPage( ) {
     
 
   return (
-    <div className='absolute w-full h-full bg-slate-900  overflow-auto'>
+    <>
+      <Head>
+        <title>TONTON - Matching Result</title>
+    </Head>
+    <div className='absolute w-full h-full bg-gray-100  overflow-auto'>
         <div className=''>
             <div className='absolute left-64 top-44 -translate-x-1/2 -translate-y-1/2 text-5xl font-extrabold h-auto'>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
@@ -104,6 +109,7 @@ function MatchingTypesPage( ) {
 
         </div>
     </div>
+    </>
   )
 }
 
