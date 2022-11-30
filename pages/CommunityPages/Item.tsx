@@ -11,12 +11,14 @@ interface CommunityPost{
     postTag : string,
     postTime: number,
     postWriter : string,
+    postContents:string,
     id :string,
 
     postImageHat:string,
     postImageTop:string,
     postImageBottom:string,
     postImageShoes:string,
+    
 }
 
 interface Props{ 
@@ -74,7 +76,7 @@ function Item({arr}:Props) {
         <div className='flex relative h-full w-full pl-[20rem]  '>
             <div className='flex absolute -top-[5rem] mx-[3rem] mt-[2rem]'>
                     <div className={`w-[25rem] h-[30rem] bg-slate-100 divide-y-4 divide-slate-400/25 border border-gray-200 shadow-xl ${
-                        show && "fixed -top-[2rem]"}`}>
+                        show && "fixed -top-[1rem]"}`}>
                         <div className='h-[10rem]'>
                             <button className='relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl'>
                                 로그인
@@ -108,7 +110,7 @@ function Item({arr}:Props) {
                     </div>
 
                     <div className='flex-col absolute left-[28rem]'>
-                        <div className='w-[55rem] bg-slate-100 border border-gray-200  shadow-xl'>
+                        <div className='w-[55rem] h-full bg-slate-100 border border-gray-200  shadow-xl'>
                             <div className='flex-col'>
                                 <div className='text-3xl'>
                                     <p>
@@ -138,20 +140,116 @@ function Item({arr}:Props) {
                                         <div className='w-[5rem] text-center'>
                                             추천
                                         </div>
-                                    </div>
-                                    
-                                </div>
-                               
-
-                            </div>
-            
                             
+                                    </div>    
+                                                                  
+                                </div>
+                            </div>            
+                            
+                                <div className='relative bg-slate-100 h-[55rem]'>
+                                    <div className=' absolute left-[27rem] top-[10rem] w-[5rem] h-[5rem] rounded-full bg-gray-500'/* 얼굴 *//>
+                                    <div className=' absolute left-[26rem] top-[16rem] w-[7rem] h-[15rem] rounded bg-gray-500'/*몸 */  />
+                                    <div className=' absolute left-[24rem] top-[16rem] w-[3rem] h-[3rem] rounded bg-gray-500'/*팔 이음새 */ />
+                                    <div className=' absolute left-[23.5rem] top-[16rem] w-[2rem] h-[15rem] rounded bg-gray-500'/*팔*/ />
+                                    <div className=' absolute left-[32rem] top-[16rem] w-[3rem] h-[3rem] rounded bg-gray-500'/*팔 이음새 */ />
+                                    <div className=' absolute left-[33.5rem] top-[16rem] w-[2rem] h-[15rem] rounded bg-gray-500'/*팔*/ />
+                                    <div className=' absolute left-[26rem] top-[30rem] w-[3rem] h-[15rem] rounded bg-gray-500'/*왼다리*/ />
+                                    <div className=' absolute left-[30rem] top-[30rem] w-[3rem] h-[15rem] rounded bg-gray-500'/*오른다리*/ />
 
+
+
+                                    <div className='absolute left-[44rem]'>
+                                        <div className="flex items-center justify-center flex-row m-2">
+                                            <img
+                                                src={arr?.postImageHat}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className='absolute left-[44rem] top-[20rem]'>
+                                        <div className="flex items-center justify-center flex-row m-2">
+                                            <img
+                                                src={arr?.postImageTop}
+                                            />
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div className='absolute left-[44rem] top-[40rem]'>
+                                        <div className="flex items-center justify-center flex-row m-2">
+                                            <img
+                                                src={arr?.postImageBottom}
+                                            />
+                                        </div>
+                                    </div>                                                   
+
+
+                                
+                                    <div className='absolute top-[35rem]'>
+                                        <div className="flex items-center justify-center flex-row m-2">
+                                            <img
+                                                src={arr?.postImageShoes}
+                                            />
+                                        </div> 
+                                    </div>                                                            
+
+
+                                </div>
+                                <div className='w-full h-full mb-[5rem]'>
+                                    <span className='break-words text-xl'>{arr?.postContents}</span>
+                                </div>
+                                    
                             
                         </div>
+                        
+                        
+                        <div className='bg-slate-100 mt-[3rem] mb-[10rem]'>
+                            <div className='p-[2rem]'>
+                                <span className=' text-2xl'>댓글</span>
+                            </div>
+                            <div className='flex flex-row justify-between pl-6 pr-6 border-b-2 border-slate-300'>
+                                <div className='relative top-0.5  w-[3rem] h-[3rem] font-bold border-b-4 border-indigo-500'>
+                                    <span className=''>최신순</span>
+                                </div>
+                                <div className='bg-indigo-500 h-[2rem] rounded-lg text-white shadow-md'>
+                                    <button>
+                                        댓글 작성하기
+                                    </button>
+                                </div>
+                            </div>
 
+                            <div className='flex flex-col divide-y-2 divide-slate-300' >
+                                <div className='p-5'>
+                                    <span>우리엄마된장찌개</span>
+                                    <div className='p-5'>
+                                    와 개이뻥
+                                    </div>
+                                </div>
+                                <div className='p-5'>
+                                    <span>우리엄마된장찌개</span>
+                                    <div className='p-5'>
+                                    와 개이뻥
+                                    </div>
+                                </div>
+                                <div className='p-5'>
+                                    <span>우리엄마된장찌개</span>
+                                    <div className='p-5'>
+                                    와 개이뻥
+                                    </div>
+                                </div>
+                                <div className='p-5'>
+                                    <span>우리엄마된장찌개</span>
+                                    <div className='p-5'>
+                                    와 개이뻥
+                                    </div>
+                                </div>
 
-                       
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    
                     </div>
                     
 

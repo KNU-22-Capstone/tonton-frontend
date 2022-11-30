@@ -8,6 +8,7 @@ export interface CommunityPost{
     postTag : string,
     postTime: number,
     postWriter : string,
+    postContents:string,
     id :string,
 
     postImageHat:string,
@@ -27,6 +28,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민',
+            postContents: '내 오늘의 소울룩',
             id :'1',
 
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
@@ -40,6 +42,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민수',
+            postContents: '멋있냐? 나도 멋있다.',
             id :'2',
             
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
@@ -53,6 +56,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민민',
+            postContents: '옷보다 남자',
             id :'3',
             
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
@@ -66,6 +70,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민',
+            postContents: '나란 남자, 이런 남자',
             id :'4',
             
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
@@ -79,6 +84,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민',
+            postContents: '안녕하새우 안녕하모니카',
             id :'5',
             
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
@@ -92,6 +98,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민',
+            postContents: '그 옷.....얼마면 돼? 돈 줄게',
             id :'6',
             
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
@@ -105,6 +112,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민',
+            postContents: '이게 패션??',
             id :'7',
             
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
@@ -118,6 +126,7 @@ const Post=()=>{
             postTag : '사용자 추천 코디',
             postTime: 6,
             postWriter : '강수민',
+            postContents: '오늘만 사는놈은 내일도 옷을 산다.',
             id :'8',
             
             postImageHat:'https://image.msscdn.net/images/goods_img/20220802/2693365/2693365_2_220.jpg',
