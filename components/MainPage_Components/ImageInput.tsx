@@ -8,7 +8,7 @@ const ImageInput = () => {
   const [imageBoolean, setImageBoolean] = useState<boolean>(false);
   const [tagSelected,settagSelected]=useState<boolean>(false);
 
-  const TagButtonName: string[] = ["모자", "상의", "하의", "신발", "아우터"];
+  const TagButtonName: string[] = ["모자", "하의", "상의", "신발"];
 
   const handleClick = () => {
     fileRef?.current?.click();
@@ -86,7 +86,7 @@ const ImageInput = () => {
                 >{`#${tagButton}`}</button>
               ))}
             <button className=" bg-white border-blue-400 text-blue-400 rounded shadow border w-28 h-9">
-              #상의
+              #아우터
             </button>
           </div>
           <div className="w-full font-bold mt-auto">

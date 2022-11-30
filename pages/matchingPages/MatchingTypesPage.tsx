@@ -49,7 +49,7 @@ function MatchingTypesPage( ) {
       <Head>
         <title>TONTON - Matching Result</title>
     </Head>
-    <div className='absolute w-full h-full bg-gray-100  overflow-auto'>
+    <div className='absolute w-full h-full bg-slate-800  overflow-auto'>
         <div className=''>
             <div className='absolute left-64 top-44 -translate-x-1/2 -translate-y-1/2 text-5xl font-extrabold h-auto'>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
@@ -72,7 +72,7 @@ function MatchingTypesPage( ) {
                     <div className='absolute right-0 left-0 top-0 bottom-0  w-[8rem] m-auto'>
                         <img
                             className='border-4 border-black'
-                            src={MaImage}
+                            src="https://image.msscdn.net/images/goods_img/20210204/1778404/1778404_1_220.jpg"
                         />
                     </div>
                     
@@ -95,8 +95,11 @@ function MatchingTypesPage( ) {
 
         <div className='relative top-[50rem]'>
            <MatcingRow 
-           title="톤온톤 톤인톤 매칭 결과"
-           id="ton"/>
+           title="Ton On Ton 매칭 결과"
+           id="tonOn"/>
+           <MatcingRow 
+           title="Ton In Ton 매칭 결과"
+           id="tonIn"/>
            <MatcingRow
            title="관련 OOTD 매칭 결과"
            id="OOTD" />   
