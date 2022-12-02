@@ -1,7 +1,9 @@
 import Link from 'next/link'
-import React from 'react'
+import React,{useState} from 'react'
 
 const Gnb = () => {
+
+    
     return (
         <div className="font-Pretendard">
            <nav className="bg-slate-200 md:mx-auto flex flex-wrap items-center justify-center h-14">

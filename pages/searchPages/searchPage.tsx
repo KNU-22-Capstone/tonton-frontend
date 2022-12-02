@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import Head from 'next/head'
 
 import Gnb from '../../components/Gnb'
@@ -6,7 +6,364 @@ import Headers from '../../components/Headers'
 import SearchKindOf from '../../components/searchComponent/searchKindOf'
 import SearchFilter from '../../components/searchComponent/SearchFilter'
 import SearchResult  from '../../components/searchComponent/SearchResult'
+import SearchPagination  from '../../components/searchComponent/SearchPagination'
+
 function searchPage() {
+  interface resultItem{
+    id:string,
+    brandName : string,
+    productName : string,
+    productPrice : number,
+    productRating : number,  
+    productLike : number,
+    productImg : string,
+    productViews : number
+    
+}
+const Products: resultItem [] =[
+    {
+    id: "1fs",
+    brandName : "토피",
+    productName : "2WAY 스웻 후드집업(MELANGE GREY)",
+    productPrice : 37000,
+    productRating : 4.7,  
+    productLike : 153789,
+    productImg : "https://image.msscdn.net/images/goods_img/20210204/1778404/1778404_1_500.jpg?t=20220628160331",
+    productViews : 5677002
+    },
+    
+    {
+    id: "1f",
+    brandName : "무신사스탠다드",
+    productName : "후디드 스웨트 집업[멜란지 그레이]",
+    productPrice : 43900,
+    productRating : 4.5,  
+    productLike : 121134,
+    productImg : "https://image.msscdn.net/images/goods_img/20190201/947088/947088_3_500.jpg?t=20200706103059",
+    productViews : 866433
+    },
+    {
+    id: "2f",
+    brandName : "토피",
+    productName : "2WAY 스웻 후드집업(Black)",
+    productPrice : 37000,
+    productRating : 4.8,  
+    productLike : 145213,
+    productImg : "https://image.msscdn.net/images/goods_img/20210204/1778408/1778408_1_500.jpg?t=20220628160331",
+    productViews : 344675
+    },
+    {
+    id:"3f",
+    brandName : "SPAO",
+    productName : "[프렌치테리]루즈핏 2-WAY 후드집업",
+    productPrice : 32900,
+    productRating : 4.7,  
+    productLike : 124555,
+    productImg : "https://image.msscdn.net/images/goods_img/20220718/2668986/2668986_70_500.jpg?t=20221108102949",
+    productViews : 625433
+    },
+    {
+    id:"4f",
+    brandName : "와릿이즌",
+    productName : "엔젤 와펜 집업 후드 그레이",
+    productPrice : 59250,
+    productRating : 4.2,  
+    productLike : 156673,
+    productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+    productViews : 926353
+    },
+    {
+    id:"5f",
+    brandName : "와릿이즌",
+    productName : "엔젤 와펜 집업 후드 그레이",
+    productPrice : 59250,
+    productRating : 4.2,  
+    productLike : 156673,
+    productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+    productViews : 866433
+    },
+    {
+    id:"6f",
+    brandName : "와릿이즌",
+    productName : "엔젤 와펜 집업 후드 그레이",
+    productPrice : 59250,
+    productRating : 4.2,  
+    productLike : 156673,
+    productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+    productViews : 866433
+    },
+    {
+    id:"7f",
+    brandName : "와릿이즌",
+    productName : "엔젤 와펜 집업 후드 그레이",
+    productPrice : 59250,
+    productRating : 4.2,  
+    productLike : 156673,
+    productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+    productViews : 866433
+    },
+    {
+      id:"7f",
+      brandName : "와릿이즌",
+      productName : "엔젤 와펜 집업 후드 그레이",
+      productPrice : 59250,
+      productRating : 4.2,  
+      productLike : 156673,
+      productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+      productViews : 866433
+    },
+    {
+      id:"7f",
+      brandName : "와릿이즌",
+      productName : "엔젤 와펜 집업 후드 그레이",
+      productPrice : 59250,
+      productRating : 4.2,  
+      productLike : 156673,
+      productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+      productViews : 866433
+    },
+    {
+      id:"7f",
+      brandName : "와릿이즌",
+      productName : "엔젤 와펜 집업 후드 그레이",
+      productPrice : 59250,
+      productRating : 4.2,  
+      productLike : 156673,
+      productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+      productViews : 866433
+    },
+    {
+      id:"7f",
+      brandName : "와릿이즌",
+      productName : "엔젤 와펜 집업 후드 그레이",
+      productPrice : 59250,
+      productRating : 4.2,  
+      productLike : 156673,
+      productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+      productViews : 866433
+    },
+    {
+      id:"7f",
+      brandName : "와릿이즌",
+      productName : "엔젤 와펜 집업 후드 그레이",
+      productPrice : 59250,
+      productRating : 4.2,  
+      productLike : 156673,
+      productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+      productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+        productViews : 866433
+        },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      {
+        id:"7f",
+        brandName : "와릿이즌",
+        productName : "엔젤 와펜 집업 후드 그레이",
+        productPrice : 59250,
+        productRating : 4.2,  
+        productLike : 156673,
+        productImg : "https://image.msscdn.net/images/goods_img/20220412/2482269/2482269_1_500.jpg?t=20220412151526",
+        productViews : 866433
+      },
+      
+
+  ]
+
+
+  
+  useEffect(() => {
+    /*
+    const fetchData = async () => {
+      setLoading(true);
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      setPosts(response.data);
+      setLoading(false);
+    };
+     fetchData();
+     여기다가 나중에 db 데이터 불러오면 됨  https://chanhuiseok.github.io/posts/react-13/ 공부자료*/ 
+  }, [])
+
+  const [currentPage, setCurrentPage] = useState<number>(1); //사용자가 누르면 변하는 페이지 번호
+  const [postsPerPage, setPostsPerPage] = useState<number>(10);//총 데이터를 몇등분 할건지의 수
+  
+  const indexOfLast = currentPage * postsPerPage; //1*10 하면 10 이니까=> 1페이지에 10까지만 보여줌 
+  const indexOfFirst = indexOfLast - postsPerPage; //10 - 10 이니까 0 => 1페이지는 0부터 보여줌
+  const currentPosts = (posts:resultItem[]) => {
+      
+      let currentPosts:resultItem[] = [];
+      currentPosts = posts.slice(indexOfFirst, indexOfLast);
+      return currentPosts;
+  };
+  
 
   return (
     <div>
@@ -45,30 +402,22 @@ function searchPage() {
           <SearchFilter/>
         </div>
 
-
+        
         <div className='flex '>
+          
              <div className='w-full min-w-max float-left h-12 border '>
                 <div className='flex justify-end'>
-                  <button className='w-9 h-12 border-l-2'>{'<<'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'<'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'1'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'2'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'3'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'4'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'5'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'6'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'7'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'8'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'9'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'10'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'>'}</button>
-                  <button className='w-9 h-12 border-l-2'>{'>>'}</button>
+                  <SearchPagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={Products.length}
+                  paginate={setCurrentPage}
+                  ></SearchPagination>
                 </div>
              </div>
         </div>
         
         <div className='flex'>
-          <SearchResult/>
+          <SearchResult posts={currentPosts(Products)}/>
         </div>
 
 
