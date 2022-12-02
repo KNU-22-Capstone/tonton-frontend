@@ -6,7 +6,6 @@ import Headers from '../components/Headers'
 import ImageInput from '../components/MainPage_Components/ImageInput'
 import Main_Rank_Card from '../components/MainPage_Components/Main_Ranking_Card'
 
-
 import Link from 'next/link'
 import Row from '../components/Row'
 
