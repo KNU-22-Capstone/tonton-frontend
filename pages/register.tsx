@@ -1,5 +1,7 @@
+import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
 import React, { useState } from "react";
 
 const register = () => {
@@ -16,10 +18,13 @@ const register = () => {
   const [nickname, setNickname] = useState<string>(""); // 닉네임
   const [nicknameCheck, setNicknameCheck] = useState<boolean>(false); // 닉네임 유효성 검사 boolean
 
+  const [name, setName] = useState<string>("");
   // 확인과 에러 메시지
   const [idMsg, setIdMsg] = useState<string>("");
   const [passwordChkMsg, setPasswordChkMsg] = useState<string>("");
   const [passwordConfMsg, setPasswordConfMsg] = useState<string>("");
+
+  const router = useRouter();
 
   const re_idCheck = (id: string) => {
     const re = /^[a-z]+[a-z0-9]{4,19}$/g;
@@ -71,11 +76,34 @@ const register = () => {
     setPasswordConf(e.target.value);
     passwordDoubleCheck_(password, e.target.value);
   };
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
   const onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+  };
+
+  const Register = () => {
+    const url = 'http://3.39.118.175:8080/auth/signup';
+    const local_utl = "localhost:8080:/auth/signup";
+
+    axios.post(local_utl, {
+        loginId: id,
+        password: password,
+        name: name,
+        nickname: nickname,
+      })
+      .then(function (response) {
+        console.log(response);
+        alert(response.data.messgae);
+        router.push('/')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -191,7 +219,7 @@ const register = () => {
                   </label>
                   <div className="flex">
                     <input
-                      onChange={onChangeNickname}
+                      onChange={onChangeName}
                       type="text"
                       name="name"
                       id="name"

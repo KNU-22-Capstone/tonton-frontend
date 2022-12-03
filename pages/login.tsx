@@ -5,11 +5,13 @@ import React, { useState } from "react";
 
 import axios from "axios"
 import { SET_TOKEN } from "../Store/Auth";
+import { useRouter } from "next/router";
 
 const login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
+  const router = useRouter()
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
@@ -27,7 +29,9 @@ const login = () => {
 
   const logIn = async ()=>{
       const url = 'http://3.39.118.175:8080/auth/signin'
-      axios.post(url, {
+      const local_utl = 'localhost:8080:/auth/signin'
+
+      axios.post(local_utl, {
       loginId: id,
       password: password
     })
@@ -35,7 +39,7 @@ const login = () => {
     .then(function (response) {
       console.log(response);
       dispatch(SET_TOKEN(response.data))
-      
+      router.push('/')
     })
     .catch(function (error) {
       console.log(error);
