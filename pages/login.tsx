@@ -1,17 +1,18 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from "react";
 
 import axios from "axios"
 import { SET_TOKEN } from "../Store/Auth";
 import { useRouter } from "next/router";
 
+
 const login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
@@ -31,18 +32,18 @@ const login = () => {
       const url = 'http://3.39.118.175:8080/auth/signin'
       const local_utl = 'http://localhost:8080/auth/signin'
 
-      axios.post(local_utl, {
-      loginId: id,
-      password: password
+      await axios.post(local_utl, {
+        loginId: id,
+        password: password
     })
-
     .then(function (response) {
-      console.log(response);
-      dispatch(SET_TOKEN(response.data))
-      router.push('/')
+        console.log(response.data);
+        axios.defaults.headers.common['Authorization'] ='Bearer '+response.data.data.accessToken
+        dispatch(SET_TOKEN(response.data.data));
+        router.push('/');
     })
     .catch(function (error) {
-      console.log(error);
+        alert("로그인 실패! 다시 로그인 해 주세요.")
     });
   }
 

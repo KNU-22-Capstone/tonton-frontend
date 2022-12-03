@@ -99,7 +99,7 @@ const register = () => {
       })
       .then(function (response) {
         console.log(response);
-        alert(response.data.messgae);
+        alert(response.data.message);
         router.push('/login')
       })
       .catch(function (error) {
