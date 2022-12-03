@@ -84,6 +84,7 @@ const register = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    Register();
   };
 
   const Register = () => {
