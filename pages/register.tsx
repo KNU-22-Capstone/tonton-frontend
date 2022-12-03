@@ -89,7 +89,7 @@ const register = () => {
 
   const Register = () => {
     const url = 'http://3.39.118.175:8080/auth/signup';
-    const local_utl = "localhost:8080/auth/signup";
+    const local_utl = "http://localhost:8080/auth/signup";
 
     axios.post(local_utl, {
         loginId: id,
@@ -100,7 +100,7 @@ const register = () => {
       .then(function (response) {
         console.log(response);
         alert(response.data.messgae);
-        router.push('/')
+        router.push('/login')
       })
       .catch(function (error) {
         console.log(error);
