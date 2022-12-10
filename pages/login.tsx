@@ -7,7 +7,6 @@ import axios from "axios"
 import { SET_TOKEN } from "../Store/Auth";
 import { useRouter } from "next/router";
 
-
 const login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -43,7 +42,7 @@ const login = () => {
         router.push('/');
     })
     .catch(function (error) {
-        alert("로그인 실패! 다시 로그인 해 주세요.")
+        alert("로그인 실패! : "+error.message);
     });
   }
 

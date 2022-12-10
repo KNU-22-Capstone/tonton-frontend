@@ -25,22 +25,14 @@ export const tokenSlice = createSlice({
             state.accessToken = null;
             state.expireTime = null
         },
-        LOGIN_CHECK: (state) => {
-            const token = cookie.get('TOKEN');
-            const url = 'http://localhost:8080/api/member/me'
-            axios.get(url, { headers: {Authorization: `Bearer ${token}`,}}
-            ).then(response => {
-                console.log(response);
-                state.authenticated = true;
-            })
-            .catch(error => {
-                console.log(error)
-                //state.authenticated = false;
-            })
+        LOGIN_CHECK_SUCCESS: (state) => {
+            state.authenticated = true;
+            state.accessToken = cookie.get('TOKEN');
+            state.expireTime =  null
         }
      }
 })
 
-export const { SET_TOKEN, DELETE_TOKEN, LOGIN_CHECK } = tokenSlice.actions;
+export const { SET_TOKEN, DELETE_TOKEN, LOGIN_CHECK_SUCCESS } = tokenSlice.actions;
 
 export default tokenSlice.reducer;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import React from "react";
+import { Cookies, useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_TOKEN } from "../Store/Auth";
 
@@ -9,16 +10,26 @@ const Headers = () => {
     //@ts-ignore
     return state.authToken.authenticated;
   });
-
+  const cookie = new Cookies();
   const dispatch = useDispatch();
 
   const logOut = () => {
     const local_utl = "http://localhost:8080/auth/signout";
-    axios.get(local_utl)
+    const token =  cookie.get('TOKEN');
+
+    axios.get(local_utl, { headers: {
+      Authorization: `Bearer ${token}`,
+    }})
+    
     .then((Response) => {
       alert(Response.data.message);
       dispatch(DELETE_TOKEN());
-    });
+      axios.defaults.headers.common[''];
+      cookie.remove('TOKEN');
+
+    }).catch((error) => {
+      console.log(error);
+    })
   };
 
   return (

@@ -10,16 +10,34 @@ import Link from 'next/link'
 import Row from '../components/Row'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { LOGIN_CHECK } from '../Store/Auth'
+import { LOGIN_CHECK_SUCCESS } from '../Store/Auth'
 import { Cookies } from 'react-cookie'
+import axios from 'axios'
 
 const Home: NextPage = () => {
   const dispatch = useDispatch();
   const cookie = new Cookies();
   
+  const loginCheck = () => {
+    const token = cookie.get('TOKEN');
+    const url = 'http://localhost:8080/api/member/me';
+    const url2 = 'api/member/me';
+    axios.get(url, { headers: {
+        Authorization: `Bearer ${token}`,
+    }}
+    ).then(response => {
+        console.log(response.data);
+        dispatch(LOGIN_CHECK_SUCCESS());
+    })
+    .catch(error => {
+        //state.authenticated = false;
+        console.log(error);   
+    })
+  }
+
   useEffect(() => {
     if(cookie.get('TOKEN')) {
-      dispatch(LOGIN_CHECK());
+      loginCheck();
     }
   })
   
