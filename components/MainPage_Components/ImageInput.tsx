@@ -1,16 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState,useEffect } from "react";
 import MatchingTypesPage from "../../pages/matchingPages/MatchingTypesPage";
+import ColorFilter from "./ColorFilter";
+import DetailedType from "./DetailedType";
+
 const ImageInput = () => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string>();
   const [imageBoolean, setImageBoolean] = useState<boolean>(false);
   const [tagTypeSelected,settagTypeSelected]=useState<string>();
   const [tagColorSelected,settagColorSelected]=useState<string>();
+  const [tagColorClicked, setTagColorClicked] = useState<boolean>(false);
   const TagButtonTypeName: string[] = ["모자", "하의", "상의", "신발","아우터"];
-  const TagButtonColorName: string[] = ["검정색", "빨강색", "주황색", "노랑색","초록색","파랑색","남색","보라색"];
-
+  const TagButtonColorName: string[] = ["흰색","회색","검정색", "빨강색", "주황색", "노랑색","초록색","파랑색","남색","보라색"];
+  
   const handleClick = () => {
     fileRef?.current?.click();
     
@@ -28,18 +32,17 @@ const ImageInput = () => {
   };
 
   
-
-
   const handleClickRadioButton2=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    setTagColorClicked(true)
     settagColorSelected(e.target.value)
-    console.log(tagColorSelected)
   }
+
   const handleClickRadioButton1=(e:React.ChangeEvent<HTMLInputElement>)=>{
     settagTypeSelected(e.target.value)
-   
   }
-  console.log(tagTypeSelected)
-  console.log(tagColorSelected)
+  
+  
+  
   return (
     <div className="font-Pretendard ">
        <div className={`${imageBoolean ? 'hidden' : ''} text-center mt-6 text-2xl`}>
@@ -85,12 +88,14 @@ const ImageInput = () => {
             imageBoolean ? "" : "hidden"
           } flex flex-col h-[600px] justify-center items-center ml-5`}
         >
-          <div className="text-3xl py-5">원하는 태그를 선택해 주세요.</div>
+          <div className="text-3xl py-5">업로드한 의류의 태그를 선택해 주세요.</div>
           <div className="flex flex-col">
             <div>
-              <fieldset className="flex ">
+            <span>업로드한 의류의 종류를 선택해주세요.</span>
+              <fieldset className="flex mt-5">
                 {TagButtonTypeName.map((tagButton1, i) => (
-                  <label className={`${tagTypeSelected==tagButton1 ? 'text-cyan-300' : ''} border w-[3rem] text-center border-black mx-2 rounded-lg`}>
+                  <label className={`${tagTypeSelected==tagButton1 ? 'text-cyan-300' : ''} border w-[3rem] text-center border-black mx-2 rounded-lg`}
+                  >
                     <input
                     type="radio"
                     value={tagButton1}
@@ -98,18 +103,24 @@ const ImageInput = () => {
                     name="type"
                     checked={tagTypeSelected==tagButton1}
                     onChange={handleClickRadioButton1}
+                    onClick={()=>settagTypeSelected(tagButton1)}
                     className="hidden"
                     />
+                    
                     {tagButton1}
+                    
                   </label>
                   ))}
-                
+                  
               </fieldset>
+              <DetailedType type={tagTypeSelected}/>
+              
             </div>
             <div className="mt-10">
+              <span>업로드한 의류의 색상을 선택해주세요.</span>
               <fieldset className="flex ">
                 {TagButtonColorName.map((tagButton2, i) => (
-                  <label className={`${tagColorSelected==tagButton2 ? 'text-cyan-300' : ''} border w-[3rem] text-center border-black mx-2 rounded-lg`}>
+                  <label className={`${tagColorSelected==tagButton2 ? 'border-2 border-black' : ''} w-[3rem]  mx-2 `}>
                     <input
                     type="radio"
                     value={tagButton2}
@@ -119,7 +130,8 @@ const ImageInput = () => {
                     onChange={handleClickRadioButton2}
                     className="hidden"
                     />
-                    {tagButton2}
+                    <ColorFilter
+                    color={tagButton2}/>
                   </label>
                   ))}
                 

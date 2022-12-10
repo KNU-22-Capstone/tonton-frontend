@@ -66,9 +66,13 @@ const ProductModal = (product:resultItemProps) => {
               <span className='font-bold'>{product.productPrice} 원</span>
             </div>
           </div>
-          <div className='relative left-48 bottom-64'>
+          <div className='relative flex left-[9rem] bottom-64'>
+            
             <button className='border-2 rounded w-1/2 h-16 bg-indigo-800 text-white font-bold border-black hover:bg-indigo-500'>
               페이지로 이동하기
+            </button>
+            <button className='border-2 rounded  w-[5rem] h-[4rem] mx-5 bg-red-600 text-white font-bold border-black hover:bg-red-400'>
+              찜하기
             </button>
           </div>
 

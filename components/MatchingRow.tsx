@@ -317,7 +317,7 @@ function Row(props:MyCompProps) {
             productName : "2WAY 스웻 후드집업(MELANGE GREY)",
             productPrice : 37000,
             productRating : 4.7,  
-            productLike : 153789,
+            productLike : 13789,
             productImg : "https://image.msscdn.net/images/goods_img/20210204/1778404/1778404_1_500.jpg?t=20220628160331",
             productViews : 5677002
             },
@@ -328,7 +328,7 @@ function Row(props:MyCompProps) {
             productName : "후디드 스웨트 집업[멜란지 그레이]",
             productPrice : 43900,
             productRating : 4.5,  
-            productLike : 121134,
+            productLike : 12134,
             productImg : "https://image.msscdn.net/images/goods_img/20190201/947088/947088_3_500.jpg?t=20200706103059",
             productViews : 866433
             },
@@ -338,7 +338,7 @@ function Row(props:MyCompProps) {
             productName : "2WAY 스웻 후드집업(Black)",
             productPrice : 37000,
             productRating : 4.8,  
-            productLike : 145213,
+            productLike : 14513,
             productImg : "https://image.msscdn.net/images/goods_img/20210204/1778408/1778408_1_500.jpg?t=20220628160331",
             productViews : 344675
             },
@@ -348,7 +348,7 @@ function Row(props:MyCompProps) {
             productName : "[프렌치테리]루즈핏 2-WAY 후드집업",
             productPrice : 32900,
             productRating : 4.7,  
-            productLike : 124555,
+            productLike : 12455,
             productImg : "https://image.msscdn.net/images/goods_img/20220718/2668986/2668986_70_500.jpg?t=20221108102949",
             productViews : 625433
             },
@@ -358,18 +358,18 @@ function Row(props:MyCompProps) {
             productName : "엔젤 와펜 집업 후드 그레이",
             productPrice : 59250,
             productRating : 4.2,  
-            productLike : 156673,
+            productLike : 51983,
             productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
             productViews : 926353
             },
             {
             id:"5f",
-            productBName : "와릿이즌",
-            productName : "엔젤 와펜 집업 후드 그레이",
-            productPrice : 59250,
+            productBName : "라퍼지스토어",
+            productName : "에센셜 오버핏 후드집업_Melange Gray ",
+            productPrice : 32900,
             productRating : 4.2,  
-            productLike : 156673,
-            productImg : "https://image.msscdn.net/images/goods_img/20190828/1134355/1134355_5_500.jpg?t=20221021172303",
+            productLike : 3946,
+            productImg : "https://image.msscdn.net/images/goods_img/20220823/2735191/2735191_1_500.jpg?t=20220829234325",
             productViews : 866433
             },
             {
