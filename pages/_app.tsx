@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import store from "../Store";
 import { CookiesProvider } from "react-cookie";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <CookiesProvider>

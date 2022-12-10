@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Cookies } from 'react-cookie';
-export const TOKEN_TIME_OUT = 600*1000;
+
 const cookie = new Cookies();
 
 export const tokenSlice = createSlice({
