@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import ProductModal from "../ProductModal"
+import SiteImage from './SiteImage'
 
 
 interface resultItem{
@@ -10,8 +11,8 @@ interface resultItem{
     productRating : number,  
     productLike : number,
     productImg : string,
-    productViews : number
-    
+    productViews : number,
+    productSite:string
 }
 interface myComp{
     posts:resultItem[]
@@ -24,18 +25,27 @@ export const SearchResult = ({posts}:myComp) => {
 
     const [productSelected, setProductSelected] = useState<resultItem>();
     const [modalOpen,setModalOpen] = useState<boolean>(false);
+    const [siteImg, setSiteImg] = useState<string>("")
 
     const handleClick=(productItem: resultItem)=>{
         setModalOpen(true);
         setProductSelected(productItem);
     }
+    
 
     //Object.values(posts)로 배열로 만듦-> 이게 props로 가져오니까 object타입으로 돼서 map이 안됨 그래서 그 안에 배열으 꺼내옴 <-왜 object로 되는지 알아야할듯
   return (
     <div className=''>
         <ul className='flex flex-wrap h-96 w-full'>
             {Object.values(posts).map((productItem)=>(
+                
                 <li className='border w-1/5 min-w-max hover:bg-slate-100'>
+                    <div className='w-[3rem] h-[1rem] '>
+                        <SiteImage
+                        site={productItem.productSite}
+                        
+                    />
+                    </div>
                     <div className='mx-1 px-16 my-10 '>
                         <a>
                             <img className='w-40 hover:opacity-50' 

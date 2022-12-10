@@ -32,11 +32,14 @@ const ImageInput = () => {
 
   const handleClickRadioButton2=(e:React.ChangeEvent<HTMLInputElement>)=>{
     settagColorSelected(e.target.value)
+    console.log(tagColorSelected)
   }
   const handleClickRadioButton1=(e:React.ChangeEvent<HTMLInputElement>)=>{
     settagTypeSelected(e.target.value)
-    
+   
   }
+  console.log(tagTypeSelected)
+  console.log(tagColorSelected)
   return (
     <div className="font-Pretendard ">
        <div className={`${imageBoolean ? 'hidden' : ''} text-center mt-6 text-2xl`}>
