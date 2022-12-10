@@ -6,9 +6,10 @@ const ImageInput = () => {
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string>();
   const [imageBoolean, setImageBoolean] = useState<boolean>(false);
-  const [tagSelected,settagSelected]=useState<boolean>(false);
-
-  const TagButtonName: string[] = ["모자", "하의", "상의", "신발"];
+  const [tagTypeSelected,settagTypeSelected]=useState<string>();
+  const [tagColorSelected,settagColorSelected]=useState<string>();
+  const TagButtonTypeName: string[] = ["모자", "하의", "상의", "신발","아우터"];
+  const TagButtonColorName: string[] = ["검정색", "빨강색", "주황색", "노랑색","초록색","파랑색","남색","보라색"];
 
   const handleClick = () => {
     fileRef?.current?.click();
@@ -26,11 +27,16 @@ const ImageInput = () => {
     setImageBoolean(false);
   };
 
-  const handle_TagButtonClock = () => {
-    settagSelected(true);
+  
 
+
+  const handleClickRadioButton2=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    settagColorSelected(e.target.value)
   }
-
+  const handleClickRadioButton1=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    settagTypeSelected(e.target.value)
+    
+  }
   return (
     <div className="font-Pretendard ">
        <div className={`${imageBoolean ? 'hidden' : ''} text-center mt-6 text-2xl`}>
@@ -77,18 +83,50 @@ const ImageInput = () => {
           } flex flex-col h-[600px] justify-center items-center ml-5`}
         >
           <div className="text-3xl py-5">원하는 태그를 선택해 주세요.</div>
-          <div className="grid grid-cols-5 gap-4 p-2">
-                {TagButtonName.map((tagButton, i) => (
-                <button
-                  key={i}
-                  onClick={handle_TagButtonClock}
-                  className= "bg-white border-gray-300 text-gray-400 rounded shadow border w-28 h-9"
-                >{`#${tagButton}`}</button>
-              ))}
-            <button className=" bg-white border-blue-400 text-blue-400 rounded shadow border w-28 h-9">
-              #아우터
-            </button>
+          <div className="flex flex-col">
+            <div>
+              <fieldset className="flex ">
+                {TagButtonTypeName.map((tagButton1, i) => (
+                  <label className={`${tagTypeSelected==tagButton1 ? 'text-cyan-300' : ''} border w-[3rem] text-center border-black mx-2 rounded-lg`}>
+                    <input
+                    type="radio"
+                    value={tagButton1}
+                    key={i}
+                    name="type"
+                    checked={tagTypeSelected==tagButton1}
+                    onChange={handleClickRadioButton1}
+                    className="hidden"
+                    />
+                    {tagButton1}
+                  </label>
+                  ))}
+                
+              </fieldset>
+            </div>
+            <div className="mt-10">
+              <fieldset className="flex ">
+                {TagButtonColorName.map((tagButton2, i) => (
+                  <label className={`${tagColorSelected==tagButton2 ? 'text-cyan-300' : ''} border w-[3rem] text-center border-black mx-2 rounded-lg`}>
+                    <input
+                    type="radio"
+                    value={tagButton2}
+                    key={i}
+                    name="color"
+                    checked={tagColorSelected==tagButton2}
+                    onChange={handleClickRadioButton2}
+                    className="hidden"
+                    />
+                    {tagButton2}
+                  </label>
+                  ))}
+                
+              </fieldset>
+            </div>
+            
           </div>
+          
+                
+         
           <div className="w-full font-bold mt-auto">
             <Link  href={{
               pathname:'../matchingPages/MatchingTypesPage',

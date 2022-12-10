@@ -2,6 +2,11 @@ import React,{useState} from 'react'
 import Picture from './Picture'
 import {useDrop} from "react-dnd"
 
+interface itemprops{
+    id:number,
+    type:string
+}
+
 function Dragdrop() {
     const dragList=[ //찜목록 배열
         {
@@ -78,28 +83,28 @@ function Dragdrop() {
 
     const[{isOver1}, drop1]=useDrop(()=>({
         accept:"image",
-        drop:(item)=>addImage(item.id,item.type),
+        drop:(item:itemprops)=>addImage(item.id,item.type),
         collect:(monitor)=>({
             isOver1 : !!monitor.isOver(),
         }),
     }))
     const[{isOver2}, drop2]=useDrop(()=>({
         accept:"image",
-        drop:(item)=>addImage(item.id,item.type),
+        drop:(item:itemprops)=>addImage(item.id,item.type),
         collect:(monitor)=>({
             isOver2 : !!monitor.isOver(),
         }),
     }))
     const[{isOver3}, drop3]=useDrop(()=>({
         accept:"image",
-        drop:(item)=>addImage(item.id,item.type),
+        drop:(item:itemprops)=>addImage(item.id,item.type),
         collect:(monitor)=>({
             isOver3 : !!monitor.isOver(),
         }),
     }))
     const[{isOver4}, drop4]=useDrop(()=>({
         accept:"image",
-        drop:(item)=>addImage(item.id,item.type),
+        drop:(item:itemprops)=>addImage(item.id,item.type),
         collect:(monitor)=>({
             isOver4 : !!monitor.isOver(),
         }),
