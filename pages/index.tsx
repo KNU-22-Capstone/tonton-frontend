@@ -8,8 +8,21 @@ import Main_Rank_Card from '../components/MainPage_Components/Main_Ranking_Card'
 
 import Link from 'next/link'
 import Row from '../components/Row'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { LOGIN_CHECK } from '../Store/Auth'
+import { Cookies } from 'react-cookie'
 
 const Home: NextPage = () => {
+  const dispatch = useDispatch();
+  const cookie = new Cookies();
+  
+  useEffect(() => {
+    if(cookie.get('TOKEN')) {
+      dispatch(LOGIN_CHECK());
+    }
+  })
+  
   return (
     <>
       <Head>
