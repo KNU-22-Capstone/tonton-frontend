@@ -45,7 +45,7 @@ function DetailedType({type}:Ptype) {
     <div>
         <fieldset className="flex mt-5">
             {selectedType.map((tag, i) => (
-            <label className={`${tagDetailedTypeSelected==tag ? 'text-cyan-300' : ''} border w-[3rem] text-center border-black mx-2 rounded-lg`}>
+            <label className={`${tagDetailedTypeSelected==tag ? 'text-cyan-300 font-bold' : ''}  w-full text-center  mx-2 rounded-lg`}>
                 <input
                 type="radio"
                 value={tag}
@@ -53,9 +53,9 @@ function DetailedType({type}:Ptype) {
                 name="type"
                 checked={tagDetailedTypeSelected==tag}
                 onChange={handleDetailedClickRadioButton}
-                className="hidden"
+                className="hidden w-full"
                 />
-                {tag}
+                -{tag}
             </label>
             ))}
             
