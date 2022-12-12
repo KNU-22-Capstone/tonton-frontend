@@ -1,11 +1,17 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from "react";
+
 import axios from "axios"
+import { SET_TOKEN } from "../Store/Auth";
+import { useRouter } from "next/router";
 
 const login = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
@@ -17,20 +23,26 @@ const login = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(id, password);
-    postTest()
+    //console.log(id, password);
+    logIn();
   };
 
-  const postTest = async ()=>{
-      axios.post('http://localhost:8080/api/v1', {
-      loginId: id,
-      password: password
+  const logIn = async ()=>{
+      const url = 'http://3.39.118.175:8080/auth/signin'
+      const local_utl = 'http://localhost:8080/auth/signin'
+
+      await axios.post(local_utl, {
+        loginId: id,
+        password: password
     })
     .then(function (response) {
-      console.log(response);
+        console.log(response.data);
+        axios.defaults.headers.common['Authorization'] ='Bearer '+response.data.data.accessToken
+        dispatch(SET_TOKEN(response.data.data));
+        router.push('/');
     })
     .catch(function (error) {
-      console.log(error);
+        alert("로그인 실패! : "+error.message);
     });
   }
 

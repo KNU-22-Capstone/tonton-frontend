@@ -1,5 +1,7 @@
+import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
 import React, { useState } from "react";
 
 const register = () => {
@@ -16,10 +18,13 @@ const register = () => {
   const [nickname, setNickname] = useState<string>(""); // 닉네임
   const [nicknameCheck, setNicknameCheck] = useState<boolean>(false); // 닉네임 유효성 검사 boolean
 
+  const [name, setName] = useState<string>("");
   // 확인과 에러 메시지
   const [idMsg, setIdMsg] = useState<string>("");
   const [passwordChkMsg, setPasswordChkMsg] = useState<string>("");
   const [passwordConfMsg, setPasswordConfMsg] = useState<string>("");
+
+  const router = useRouter();
 
   const re_idCheck = (id: string) => {
     const re = /^[a-z]+[a-z0-9]{4,19}$/g;
@@ -71,11 +76,35 @@ const register = () => {
     setPasswordConf(e.target.value);
     passwordDoubleCheck_(password, e.target.value);
   };
+  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
   const onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    Register();
+  };
+
+  const Register = () => {
+    const url = 'http://3.39.118.175:8080/auth/signup';
+    const local_utl = "http://localhost:8080/auth/signup";
+
+    axios.post(local_utl, {
+        loginId: id,
+        password: password,
+        name: name,
+        nickname: nickname,
+      })
+      .then(function (response) {
+        console.log(response);
+        alert(response.data.message);
+        router.push('/login')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -165,7 +194,7 @@ const register = () => {
                     onChange={onChangePasswordConf}
                     type="password"
                     name="password"
-                    id="password"
+                    id="Double_password"
                     placeholder="비밀번호 확인"
                     className={`${
                       passwordDoubleCheck ? "border-green-500" : ""
@@ -181,6 +210,25 @@ const register = () => {
                       {passwordConfMsg}
                     </div>
                   )}
+                </div>
+                <div>
+                  <label
+                    htmlFor="text"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    이름
+                  </label>
+                  <div className="flex">
+                    <input
+                      onChange={onChangeName}
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="이름"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      required
+                    />
+                  </div>
                 </div>
                 <div>
                   <label
