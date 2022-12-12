@@ -2,7 +2,93 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useRef, useState,useEffect } from "react";
 import MatchingTypesPage from "../../pages/matchingPages/MatchingTypesPage";
+
+/*
 import ColorFilter from "./ColorFilter";
+<div className="mt-10">
+              <span>업로드한 의류의 색상을 선택해주세요.</span>
+              <fieldset className="flex ">
+                {TagButtonColorName.map((tagButton2, i) => (
+                  <label className={`${tagColorSelected==tagButton2 ? 'border-2 border-black' : ''} w-[3rem]  mx-2 `}>
+                    <input
+                    type="radio"
+                    value={tagButton2}
+                    key={i}
+                    name="color"
+                    checked={tagColorSelected==tagButton2}
+                    onChange={handleClickRadioButton2}
+                    className="hidden"
+                    />
+                    <ColorFilter
+                    color={tagButton2}/>
+                  </label>
+                  ))}
+                
+              </fieldset>
+            </div> */
+
+/*ColorFilter.tsx
+import React,{useState, useEffect} from 'react'
+
+interface Ptype{
+    color:string
+}
+
+function ColorFilter({color}:Ptype) {
+    const [Cshape, setCshape] = useState<string>("")
+    useEffect(() => {
+        if(color=="검정색")
+        {
+            setCshape("bg-black")
+        }
+        else if(color=="빨강색")
+        {
+            setCshape("bg-red-600")
+        }
+        else if(color=="주황색")
+        {
+            setCshape("bg-orange-600")   
+        }
+        else if(color=="노랑색")
+        {
+            setCshape("bg-yellow-700")   
+        }
+        else if(color=="초록색")
+        {
+            setCshape("bg-green-600")   
+        }
+        else if(color=="파랑색")
+        {
+            setCshape("bg-blue-600")   
+        }
+        else if(color=="남색")
+        {
+            setCshape("bg-slate-600")   
+        }
+        else if(color=="보라색")
+        {
+            setCshape("bg-purple-600")   
+        }
+        else if(color=="흰색")
+        {
+            setCshape("bg-white")   
+        }
+        else if(color=="회색")
+        {
+            setCshape("bg-gray-400")   
+        }
+
+    }, [])
+  return (
+    <div>
+        <p className={`border border-black  w-[2rem] h-[2rem] mx-1 my-2 ${Cshape} rounded-full hover:opacity-70 `}></p>
+    </div>
+  )
+}
+
+export default ColorFilter
+
+*/
 import DetailedType from "./DetailedType";
 
 const ImageInput = () => {
@@ -92,9 +178,9 @@ const ImageInput = () => {
           <div className="flex flex-col">
             <div>
             <span>업로드한 의류의 종류를 선택해주세요.</span>
-              <fieldset className="flex mt-5">
+              <fieldset className="flex mt-5  ">
                 {TagButtonTypeName.map((tagButton1, i) => (
-                  <label className={`${tagTypeSelected==tagButton1 ? 'text-cyan-300' : ''} border w-[3rem] text-center border-black mx-2 rounded-lg`}
+                  <label className={`${tagTypeSelected==tagButton1 ? 'text-cyan-400 font-bold' : ''}  w-[3rem] text-center  mx-2 `}
                   >
                     <input
                     type="radio"
@@ -116,27 +202,7 @@ const ImageInput = () => {
               <DetailedType type={tagTypeSelected}/>
               
             </div>
-            <div className="mt-10">
-              <span>업로드한 의류의 색상을 선택해주세요.</span>
-              <fieldset className="flex ">
-                {TagButtonColorName.map((tagButton2, i) => (
-                  <label className={`${tagColorSelected==tagButton2 ? 'border-2 border-black' : ''} w-[3rem]  mx-2 `}>
-                    <input
-                    type="radio"
-                    value={tagButton2}
-                    key={i}
-                    name="color"
-                    checked={tagColorSelected==tagButton2}
-                    onChange={handleClickRadioButton2}
-                    className="hidden"
-                    />
-                    <ColorFilter
-                    color={tagButton2}/>
-                  </label>
-                  ))}
-                
-              </fieldset>
-            </div>
+            
             
           </div>
           
