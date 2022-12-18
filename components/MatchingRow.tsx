@@ -7,6 +7,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import imgLogo from '../public/1.jpg';
+
 
 type MyCompProps = {
    
@@ -250,11 +252,11 @@ function Row(props:MyCompProps) {
         {
             id: "1fs",
             productBName : "캐주얼",
-            productName : "편하고 멋있게!",
+            productName : "",
             productPrice : undefined,
             productRating : undefined,  
             productLike : undefined,
-            productImg : "https://image.msscdn.net/images/codimap/detail/19162/detail_19162_1_500.jpg?202211290411",
+            productImg : imgLogo+"",
             productViews : 5677002
             },
             
@@ -265,7 +267,7 @@ function Row(props:MyCompProps) {
               productPrice : undefined,
               productRating : undefined,  
               productLike : undefined,
-              productImg : "https://image.msscdn.net/images/codimap/detail/19074/detail_19074_1_500.jpg?202211290411",
+              productImg : "2.JPG",
               productViews : 5677002
               },
             {
@@ -275,7 +277,7 @@ function Row(props:MyCompProps) {
                 productPrice : undefined,
                 productRating : undefined,  
                 productLike : undefined,
-                productImg : "https://image.msscdn.net/images/codimap/detail/18934/detail_18934_1_500.jpg?202211290411",
+                productImg : "3.JPG",
                 productViews : 5677002
             },
             {
@@ -285,7 +287,7 @@ function Row(props:MyCompProps) {
               productPrice : undefined,
               productRating : undefined,  
               productLike : undefined,
-              productImg : "https://image.msscdn.net/images/codimap/detail/18709/detail_18709_1_500.jpg?202211290411",
+              productImg : "4.JPG",
               productViews : 5677002
           },
           {
@@ -295,7 +297,7 @@ function Row(props:MyCompProps) {
             productPrice : undefined,
             productRating : undefined,  
             productLike : undefined,
-            productImg : "https://image.msscdn.net/images/codimap/detail/18686/detail_18686_1_500.jpg?202211290411",
+            productImg : "5.JPG",
             productViews : 5677002
         },
         {
@@ -305,7 +307,7 @@ function Row(props:MyCompProps) {
           productPrice : undefined,
           productRating : undefined,  
           productLike : undefined,
-          productImg : "https://image.msscdn.net/images/codimap/detail/13648/detail_13648_1_500.jpg?202211290411",
+          productImg : "7.JPG",
           productViews : 5677002
       },
 
