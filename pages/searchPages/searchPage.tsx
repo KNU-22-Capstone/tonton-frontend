@@ -39,16 +39,18 @@ const [Product, setProduct] = useState<resultItem[]>([]);
   };
   
   useEffect(() => {
+      fetchdata();
+  },[] )
+  
+  const fetchdata = async () => {
     const url = 'http://210.125.212.192:8666/api/clothes'
-    axios.get(url).then(response => {
+    await axios.get(url).then(response => {
       console.log(response.data.data.content);
       setProduct(response.data.data.content);
     }).catch(e=>{
       console.log(e)
     })
-    
-  },[] )
-  
+  }
   
   return (
     <div>
