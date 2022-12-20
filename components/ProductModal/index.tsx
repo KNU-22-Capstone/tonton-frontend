@@ -1,13 +1,19 @@
 import React,{Dispatch,SetStateAction} from 'react'
 //"strictNullChecks": false tsconfing에 이거 써서 prosp 작동됨
 interface resultItemProps{
-    brandName : string,
-    productName : string,
-    productPrice : number,
-    productRating : number,  
-    productLike : number,
-    productImg : string,
-    productViews : number,
+    id:number,
+    color: string,
+    detailTag: string,
+    majorTag: string,
+    name: string,
+    pictureUrl: string,
+    price: number,
+    saturation: string,
+    siteName: string,
+    siteUrl: string,
+    sold: boolean,
+    value: string,
+    views: number
     setModalOpen : Dispatch<SetStateAction<boolean>>
 }
 
@@ -25,12 +31,12 @@ const ProductModal = (product:resultItemProps) => {
             <div className='w-72'>
               <span className='text-gray-500'>Product Name</span>
               <h2 className='font-bold text-2xl'>
-                {product.productName}
+                {product.name}
               </h2>
             </div>
             <img
               className=" w-64 h-auto "
-              src={product.productImg}
+              src={product.pictureUrl}
               alt="modal__poster-img"
             />
           </div>
@@ -41,19 +47,19 @@ const ProductModal = (product:resultItemProps) => {
             </div>
             <div className='my-4 text-sm'>
               <span>브랜드 </span>
-              <span className='mx-16 font-bold'>{product.brandName}</span>
+              <span className='mx-16 font-bold'>{product.siteName}</span>
             </div>
             <div className='my-4 text-sm '>
               <span>좋아요수</span>
-              <span className='mx-12 font-bold  text-red-500'>❤{product.productLike}</span>
+              <span className='mx-12 font-bold  text-red-500'>❤{}</span>
             </div>
             <div className='my-4 text-sm'>
               <span>조회수   </span>
-              <span className='mx-14 font-bold'>{product.productViews} 회</span>
+              <span className='mx-14 font-bold'>{product.views} 회</span>
             </div>    
             <div className='my-4 text-sm'>
               <span>평점</span>
-              <span className='mx-20 font-bold text-orange-400'>{product.productRating}</span>
+              <span className='mx-20 font-bold text-orange-400'>{}</span>
             </div>
             <div>
               <span className='m-1 text-xs font-bold text-gray-500 text-center border rounded'>후드</span>
@@ -63,7 +69,7 @@ const ProductModal = (product:resultItemProps) => {
             </div>
             <div className='my-16 py-5 w-56 border-2 border-white border-t-gray-300'>
               <span className='mr-5'>판매가   </span>
-              <span className='font-bold'>{product.productPrice} 원</span>
+              <span className='font-bold'>{product.price} 원</span>
             </div>
           </div>
           <div className='relative flex left-[9rem] bottom-64'>

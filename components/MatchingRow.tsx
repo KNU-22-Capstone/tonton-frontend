@@ -17,6 +17,11 @@ type MyCompProps = {
 
 function Row(props:MyCompProps) {
     
+    
+    
+
+
+    const [upLoadImage, setupLoadImage] = useState([])
     const [TonInResult, setTonInResult] = useState<ProdInfo[]>([
         {
             id: "1fs",

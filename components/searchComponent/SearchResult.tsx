@@ -4,15 +4,19 @@ import SiteImage from './SiteImage'
 
 
 interface resultItem{
-    id:string,
-    brandName : string,
-    productName : string,
-    productPrice : number,
-    productRating : number,  
-    productLike : number,
-    productImg : string,
-    productViews : number,
-    productSite:string
+    id:number,
+    color: string,
+    detailTag: string,
+    majorTag: string,
+    name: string,
+    pictureUrl: string,
+    price: number,
+    saturation: string,
+    siteName: string,
+    siteUrl: string,
+    sold: boolean,
+    value: string,
+    views: number
 }
 interface myComp{
     posts:resultItem[]
@@ -42,33 +46,33 @@ export const SearchResult = ({posts}:myComp) => {
                 <li className='border w-1/5 min-w-max hover:bg-slate-100'>
                     <div className='w-[3rem] h-[1rem] '>
                         <SiteImage
-                        site={productItem.productSite}
+                        site={productItem.siteName}
                         
                     />
                     </div>
                     <div className='mx-1 px-16 my-10 '>
                         <a>
                             <img className='w-40 hover:opacity-50' 
-                            src={productItem.productImg}
+                            src={productItem.pictureUrl}
                             onClick={()=>handleClick(productItem)}
                             />
                         </a>
                     
                         <div className='w-40'>
                             <p className='font-bold'>
-                                <a>{productItem.brandName}</a>
+                                <a>{productItem.siteName}</a>
                             </p>
                             <p className='text-xs'>
-                                <a>{productItem.productName}</a>
+                                <a>{productItem.name}</a>
                             </p>
                             <p className='font-bold border border-white border-b-gray-300'>
-                                <a>{productItem.productPrice}원</a>
+                                <a>{productItem.price}원</a>
                             </p>
                             <p className='text-xs font-bold text-orange-400'>
-                                <a>{productItem.productRating}</a>
+                                <a>{}</a>
                             </p>
                             <p className='text-sm font-bold text-red-500'>
-                                <a>❤{productItem.productLike}</a>
+                                <a>❤{productItem.views}</a>
                             </p>
                         </div>
 
