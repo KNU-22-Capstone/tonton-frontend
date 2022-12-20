@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   
   const loginCheck = () => {
     const token = cookie.get('TOKEN');
-    const url = 'http://localhost:8080/api/member/me';
+    const url = 'http://210.125.212.192:8666/api/member/me';
     const url2 = 'api/member/me';
     axios.get(url, { headers: {
         Authorization: `Bearer ${token}`,

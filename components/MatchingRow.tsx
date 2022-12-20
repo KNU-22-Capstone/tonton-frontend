@@ -256,7 +256,7 @@ function Row(props:MyCompProps) {
             productPrice : undefined,
             productRating : undefined,  
             productLike : undefined,
-            productImg : imgLogo+"",
+            productImg : '../1.jpg',
             productViews : 5677002
             },
             
