@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import imgLogo from '../public/1.jpg';
 
-
 type MyCompProps = {
    
     title: string,
@@ -251,63 +250,63 @@ function Row(props:MyCompProps) {
     const [CommunityResult, setCommunityResult] = useState<ProdInfo[]>([
         {
             id: "1fs",
-            productBName : "캐주얼",
-            productName : "",
+            productBName : "사용자 추천 코디",
+            productName : "오늘의 룩은?",
             productPrice : undefined,
             productRating : undefined,  
             productLike : undefined,
-            productImg : '../1.jpg',
+            productImg :  "/img/1.JPG",
             productViews : 5677002
             },
             
             {
               id: "1fs",
-              productBName : "캐주얼",
+              productBName : "사용자 추천 코디",
               productName : "손쉽게 꾸미는 법",
               productPrice : undefined,
               productRating : undefined,  
               productLike : undefined,
-              productImg : "2.JPG",
+              productImg : "/img/2.JPG",
               productViews : 5677002
               },
             {
                 id: "1fs",
-                productBName : "캐주얼",
+                productBName : "사용자 추천 코디",
                 productName : "편하게 즐겨",
                 productPrice : undefined,
                 productRating : undefined,  
                 productLike : undefined,
-                productImg : "3.JPG",
+                productImg : "/img/3.JPG",
                 productViews : 5677002
             },
             {
               id: "1fs",
-              productBName : "캐주얼",
+              productBName : "사용자 추천 코디",
               productName : "꾸안꾸로 완성",
               productPrice : undefined,
               productRating : undefined,  
               productLike : undefined,
-              productImg : "4.JPG",
+              productImg : "/img/4.JPG",
               productViews : 5677002
           },
           {
             id: "1fs",
-            productBName : "캐주얼",
+            productBName : "사용자 추천 코디",
             productName : "매력적인 코디",
             productPrice : undefined,
             productRating : undefined,  
             productLike : undefined,
-            productImg : "5.JPG",
+            productImg : "/img/5.JPG",
             productViews : 5677002
         },
         {
           id: "1fs",
-          productBName : "캐주얼",
+          productBName : "사용자 추천 코디",
           productName : "가볍게 입자",
           productPrice : undefined,
           productRating : undefined,  
           productLike : undefined,
-          productImg : "7.JPG",
+          productImg : "/img/7.JPG",
           productViews : 5677002
       },
 

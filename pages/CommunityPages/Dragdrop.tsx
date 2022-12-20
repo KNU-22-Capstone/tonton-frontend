@@ -66,12 +66,14 @@ function Dragdrop() {
             
         },
         {
-            id : 9,
-            url: "https://image.msscdn.net/images/goods_img/20221012/2854904/2854904_1_500.jpg?t=20221013093908",
-            color:"white",
-            type:"신발"
+            id : 10,
+            url: "https://image.msscdn.net/images/goods_img/20211117/2238440/2238440_1_500.jpg?t=20211117185415",
+            color:"navy",
+            type:"아우터"
             
         }
+      
+
     
     ]
     const pictures= dragList.map(picture=><Picture url={picture.url} id={picture.id} color={picture.color} type={picture.type}/>)
@@ -80,6 +82,7 @@ function Dragdrop() {
     const [Botboard, setBotBoard] = useState([])
     const [Hatboard, setHatBoard] = useState([])
     const [Shoeboard, setShoeBoard] = useState([])
+    const [Outerboard, setOuterBoard] = useState([])
 
     const[{isOver1}, drop1]=useDrop(()=>({
         accept:"image",
@@ -109,6 +112,13 @@ function Dragdrop() {
             isOver4 : !!monitor.isOver(),
         }),
     }))
+    const[{isOver5}, drop5]=useDrop(()=>({
+        accept:"image",
+        drop:(item:itemprops)=>addImage(item.id,item.type),
+        collect:(monitor)=>({
+            isOver5 : !!monitor.isOver(),
+        }),
+    }))
     
     const addImage=(id: number,type:string)=> {
         
@@ -135,6 +145,12 @@ function Dragdrop() {
             
             setShoeBoard([droppedPictures[0]])
         }
+        else if(type=="아우터")
+        {
+            const droppedPictures = dragList.filter(picture=> id===picture.id)
+            
+            setOuterBoard([droppedPictures[0]])
+        }
         
     }
 
@@ -142,7 +158,9 @@ function Dragdrop() {
     const BotboardImages=Botboard.map(picture=><Picture url={picture.url} id={picture.id} color={picture.color} type={picture.type}/>)
     const HatboardImages=Hatboard.map(picture=><Picture url={picture.url} id={picture.id} color={picture.color} type={picture.type}/>)
     const ShoeboardImages=Shoeboard.map(picture=><Picture url={picture.url} id={picture.id} color={picture.color} type={picture.type}/>)
-    
+    const OuterboardImages=Outerboard.map(picture=><Picture url={picture.url} id={picture.id} color={picture.color} type={picture.type}/>)
+
+
   return (
     <div className='flex flex-row justify-around'>
         
@@ -156,7 +174,7 @@ function Dragdrop() {
                 </div>
             </div>
             
-
+            
             <div className='absolute'>
                 <span>상의</span>
                 <div className='bg-slate-300 flex flex-col justify-around border border-stone-900 h-[15rem] w-[10rem]' 
@@ -182,6 +200,14 @@ function Dragdrop() {
                 <div className=' bg-slate-300 flex flex-col justify-around border border-stone-900 h-[15rem]  w-[10rem]' 
                 ref={drop4} style={{border:isOver4? '3px solid red ' : ' 1px solid black'}}>
                     {ShoeboardImages}
+                </div>
+            </div>
+
+            <div className='absolute top-[20rem] right-[25rem]'>
+                <span>아우터</span>
+                <div className=' bg-slate-300 flex flex-col justify-around border border-stone-900 h-[15rem]  w-[10rem]' 
+                ref={drop5} style={{border:isOver5? '3px solid red ' : ' 1px solid black'}}>
+                    {OuterboardImages}
                     
                 </div>
             </div>
