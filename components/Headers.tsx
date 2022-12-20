@@ -14,7 +14,7 @@ const Headers = () => {
   const dispatch = useDispatch();
 
   const logOut = () => {
-    const local_utl = "http://localhost:8080/auth/signout";
+    const local_utl = "http://210.125.212.192:8666/auth/signout";
     const token =  cookie.get('TOKEN');
 
     axios.get(local_utl, { headers: {

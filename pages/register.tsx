@@ -90,8 +90,9 @@ const register = () => {
   const Register = () => {
     const url = 'http://3.39.118.175:8080/auth/signup';
     const local_utl = "http://localhost:8080/auth/signup";
+    const server_utl = 'http://210.125.212.192:8666/auth/signin'
 
-    axios.post(local_utl, {
+    axios.post(server_utl, {
         loginId: id,
         password: password,
         name: name,
@@ -141,9 +142,6 @@ const register = () => {
                       placeholder="아이디"
                       required
                     />
-                    <button className="ml-2 text-bold w-1/3 text-center bg-slate-900 text-white rounded-lg">
-                      중복 확인
-                    </button>
                   </div>
                   {id.length > 0 && (
                     <div
@@ -247,9 +245,6 @@ const register = () => {
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
-                    <button className="ml-2 text-bold w-1/3 text-center bg-slate-900 text-white rounded-lg">
-                      중복 확인
-                    </button>
                   </div>
                 </div>
                 <button

@@ -30,8 +30,9 @@ const login = () => {
   const logIn = async ()=>{
       const url = 'http://3.39.118.175:8080/auth/signin'
       const local_utl = 'http://localhost:8080/auth/signin'
+      const server_utl = 'http://210.125.212.192:8666/auth/signin'
 
-      await axios.post(local_utl, {
+      await axios.post(server_utl, {
         loginId: id,
         password: password
     })

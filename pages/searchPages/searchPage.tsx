@@ -7,6 +7,7 @@ import SearchKindOf from '../../components/searchComponent/searchKindOf'
 import SearchFilter from '../../components/searchComponent/SearchFilter'
 import SearchResult  from '../../components/searchComponent/SearchResult'
 import SearchPagination  from '../../components/searchComponent/SearchPagination'
+import axios from 'axios'
 
 function searchPage() {
   interface resultItem{
@@ -852,8 +853,6 @@ const Products: resultItem [] =[
       
 
   ]
-
-
   
   useEffect(() => {
     /*
@@ -875,12 +874,19 @@ const Products: resultItem [] =[
   const indexOfLast = currentPage * postsPerPage; //1*10 하면 10 이니까=> 1페이지에 10까지만 보여줌 
   const indexOfFirst = indexOfLast - postsPerPage; //10 - 10 이니까 0 => 1페이지는 0부터 보여줌
   const currentPosts = (posts:resultItem[]) => {
-      
       let currentPosts:resultItem[] = [];
       currentPosts = posts.slice(indexOfFirst, indexOfLast);
       return currentPosts;
   };
   
+  useEffect(() => {
+    const url = 'http://210.125.212.192:8666/api/clothes'
+    axios.get(url).then(response => {
+      console.log(response.data.data.content);
+    }).catch(e=>{
+      console.log(e)
+    })
+  }, )
   
   
   return (
