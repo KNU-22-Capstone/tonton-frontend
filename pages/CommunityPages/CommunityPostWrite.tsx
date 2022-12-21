@@ -5,6 +5,7 @@ import Headers from '../../components/Headers'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Dragdrop from './Dragdrop'
+import axios from 'axios'
 
 
 function CommunityPostWrite() {
@@ -38,8 +39,32 @@ function CommunityPostWrite() {
     const handle_TagButtonClock = () => {
     }
 
+    const writePost =  async () => {
+        const url = 'http://210.125.212.192:8666/api/v1/articles';
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+
+        await axios.post(url, {
+            Headers: "Content-Type : application/json",
+            title: textTitle,
+            context: textContents,
+            imageUrls: [
+                "[의류의 imageUrl값]",
+                "www.naver1.com",
+                "www.naver2.com"
+            ],
+            writedate:`${year}-${month}-${day}`
+        }).then(response =>{
+            console.log(response.data);
+        }).catch(e=>{
+            console.log(e)
+        })
+    }
+
   return (
-    <div>
+    <div className='font-Pretendard'>
         <Head>
         <title>코디위키 - TONTON</title>
         </Head>
@@ -117,7 +142,7 @@ function CommunityPostWrite() {
                             </div>
 
                             <div className='flex flex-row-reverse m-[2rem] pb-[2rem]'>
-                                <button className='bg-slate-500 rounded-lg w-[8rem] text-white'>
+                                <button onClick={writePost} className='bg-slate-500 rounded-lg w-[8rem] text-white'>
                                     작성하기
                                 </button>
                             </div>

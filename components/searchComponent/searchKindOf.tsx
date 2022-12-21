@@ -19,7 +19,7 @@ const SearchKindOf=()=> {
     
 
   return (
-    <div className=' py-5 font-bold'>
+    <div className=' py-10 font-bold'>
         {ProductTag.map((product)=>(
             <div>
                 <div className=' text-lg'>

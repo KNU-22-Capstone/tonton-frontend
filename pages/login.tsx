@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import axios from "axios"
 import { SET_TOKEN } from "../Store/Auth";
-import  useRouter  from "next/router";
+import { useRouter } from 'next/router'
 
 const login = () => {
   const [id, setId] = useState<string>("");
