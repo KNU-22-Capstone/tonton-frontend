@@ -102,6 +102,7 @@ const ImageInput = () => {
   const [tagTypeSelected, settagTypeSelected] = useState<string>();
   const [tagColorSelected, settagColorSelected] = useState<string>();
   const [tagColorClicked, setTagColorClicked] = useState<boolean>(false);
+  const [downloadImage, setDownloadImage] = useState<any>();
   const TagButtonTypeName: string[] = [
     "모자",
     "하의",
@@ -154,39 +155,7 @@ const ImageInput = () => {
     settagTypeSelected(e.target.value);
   };
 
-  const onclickMatching = async () => {
-    // if (uploadImages !== undefined ) {
-    //   await encodeFileToBase64();
-    // }
-    console.log(uploadImages);
-
-    if (uploadImages !== undefined) {
-      try {
-        const formData = new FormData();
-        formData.append("img", uploadImages);
-
-        // for (let key of formData.values()) {
-        //   console.log(key);
-        // }
-        const url = "http://localhost:8080/upload_image";
-        axios.post('', {
-          data: formData,
-        })
-          .then((response) => {
-            console.log(response);
-          });
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
-    // router.push({
-    //   pathname: '../matchingPages/MatchingTypesPage',
-    //   query: { currentName: JSON.stringify(images) }, /* 전달할 props를 넣어주고 현재 obj가 object인 상태이기 때문에 문자열로 바꿔주기위해 JSON.stringify()를 사용.*/ 
-    // })
-  };
-
-  const encodeFileToBase64 = () => {
+  const encodeFileToBase64 = async () => {
     try {
       const reader = new FileReader();
       reader.readAsDataURL(uploadImages);
@@ -197,7 +166,19 @@ const ImageInput = () => {
     } catch (e) {
       console.log(e);
     }
-  };
+
+    const url = "http://210.125.212.192:8999/image_post";
+    await axios.post(url, {
+      img: base64image,
+      Headers: "Content-Type : application/json",
+    }).then(response => {
+      //console.log(response.data.img);
+      setDownloadImage("data:image/;base64,"+response.data.img);
+      //router.push('/matchingPages/MatchingTypesPage')
+    }).catch(e => {
+      console.log(e)
+    })
+  }
 
   return (
     <div className="font-Pretendard ">
@@ -281,27 +262,20 @@ const ImageInput = () => {
             </div>
           </div>
 
-          <div className="w-full font-bold mt-auto">
-          <Link  href={{
-              pathname:'../matchingPages/MatchingTypesPage',
-              query: { currentName: JSON.stringify(images) }/* 전달할 props를 넣어주고 현재 obj가 object인 상태이기 때문에 문자열로 바꿔주기위해 JSON.stringify()를 사용.*/,
-              
-              }}
-              as={`/view/[id]`}/*props 전달할 때 url 뒤에 표시 */
-              >
+          <div className="w-full font-bold mt-auto"> 
             <button
               className="bg-slate-800 text-white w-full p-2 rounded"
-              onClick={onclickMatching}
+              onClick={() => encodeFileToBase64()}
             >
               메칭하기
             </button>
-            </Link>
             <button
               onClick={handleCancel}
               className="bg-rose-700 text-white w-full p-2 rounded"
             >
               취소하기
             </button>
+            <img src={downloadImage}></img>
           </div>
         </div>
       </div>

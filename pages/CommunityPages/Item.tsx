@@ -4,6 +4,7 @@ import Head from 'next/head'
 import Gnb from '../../components/Gnb'
 import Headers from '../../components/Headers'
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
 
 interface CommunityPost{
     postLike : number,
@@ -33,7 +34,10 @@ interface Props{
 function Item({arr}:Props) {
     const [show, setShow] = useState<boolean>(false);
     
-
+    const login_status = useSelector((state) => {
+        //@ts-ignore
+        return state.authToken.authenticated;
+      });
     /*function getData() {
         Axios.get(API_URL).then((res)=>{
             console.log(res.data);
@@ -57,7 +61,7 @@ function Item({arr}:Props) {
     }, [])
 
   return (
-    <div>
+    <div className='font-Pretendard'>
          <Head>
         <title>코디위키 - TONTON</title>
         </Head>
@@ -78,9 +82,22 @@ function Item({arr}:Props) {
                     <div className={`w-[25rem] h-[30rem] bg-slate-100 divide-y-4 divide-slate-400/25 border border-gray-200 shadow-xl ${
                         show && "fixed -top-[1rem]"}`}>
                         <div className='h-[10rem]'>
-                            <button className='relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl'>
-                                로그인
-                            </button>
+                        {login_status ? (
+              <div className="h-[10rem]">
+                <button className="relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl">
+                  로그아웃
+                </button>
+              </div>
+            ) : (
+              <div className="h-[10rem]">
+                <button
+                  onClick={() => router.push("/login")}
+                  className="relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl"
+                >
+                  로그인
+                </button>
+              </div>
+            )}
                         </div>
                         <div className='flex-row pl-5'>
                             <div className='text-gray-400 mt-3'>

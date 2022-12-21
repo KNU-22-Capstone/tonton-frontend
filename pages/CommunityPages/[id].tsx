@@ -1,4 +1,4 @@
-import  useRouter  from 'next/router';
+import { useRouter } from 'next/router'
 import { useEffect, useState } from "react";
 import Item from "./Item";
 
@@ -18,7 +18,7 @@ export interface CommunityPost{
 }
 
 const Post=()=>{
-    const router =useRouter();
+    const router = useRouter();
     const {id}=router.query;
 
     const [comPostArr, setcomPostArr] = useState<CommunityPost[]>([
