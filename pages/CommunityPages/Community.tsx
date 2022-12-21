@@ -257,7 +257,7 @@ function Community() {
     return state.authToken.authenticated;
   });
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <div className="font-Pretendard">
@@ -289,7 +289,10 @@ function Community() {
               </div>
             ) : (
               <div className="h-[10rem]">
-                <button onClick={()=>router.push('/login')} className="relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl">
+                <button
+                  onClick={() => router.push("/login")}
+                  className="relative left-[4rem] top-[2rem] bg-blue-400 w-[17rem] h-[3rem] rounded-2xl"
+                >
                   로그인
                 </button>
               </div>
@@ -319,14 +322,24 @@ function Community() {
                   <div className="m-3">
                     <span className="font-bold text-xl">전체</span>
                   </div>
-
-                  <div className="m-3">
-                    <Link href="./CommunityPostWrite">
-                      <button className="bg-blue-400 w-[5rem] rounded-2xl">
+                  {login_status ? (
+                    <div className="m-3">
+                      <Link href="./CommunityPostWrite">
+                        <button className="bg-blue-400 w-[5rem] rounded-2xl">
+                          글쓰기
+                        </button>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="m-3">
+                      <button
+                        onClick={() => alert("먼저 로그인 해 주세요.")}
+                        className="bg-blue-400 w-[5rem] rounded-2xl"
+                      >
                         글쓰기
                       </button>
-                    </Link>
-                  </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex justify-between px-[10rem] pb-5">

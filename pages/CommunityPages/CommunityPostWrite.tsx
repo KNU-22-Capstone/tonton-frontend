@@ -6,6 +6,7 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Dragdrop from './Dragdrop'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 
 function CommunityPostWrite() {
@@ -14,6 +15,7 @@ function CommunityPostWrite() {
     const [imageBoolean, setImageBoolean] = useState<boolean>(false);
     const [textTitle, settextTitle] = useState("");
     const [textContents, settextContents] = useState("");
+    const router = useRouter()
     const handleClick = () => {
       fileRef?.current?.click();
     };
@@ -41,6 +43,7 @@ function CommunityPostWrite() {
 
     const writePost =  async () => {
         const url = 'http://210.125.212.192:8666/api/v1/articles';
+
         let date = new Date();
         let year = date.getFullYear();
         let month = ("0" + (1 + date.getMonth())).slice(-2);
@@ -58,6 +61,7 @@ function CommunityPostWrite() {
             writedate:`${year}-${month}-${day}`
         }).then(response =>{
             console.log(response.data);
+            router.push('/CommunityPages/Community')
         }).catch(e=>{
             console.log(e)
         })
