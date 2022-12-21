@@ -133,11 +133,24 @@ const ImageInput = () => {
     setImages(URL.createObjectURL(e.target.files[0]));
     const files = (e.target.files as FileList)[0];
     const files2 = e.target.files[0];
+    const reader = new FileReader();
   
     if (files2 === undefined) {
       return;
     }
     setUploadImages(files2);
+
+    try {
+      reader.readAsDataURL(files2);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        setbase64image(base64data);
+        console.log(base64image)
+      };
+    } catch (e) {
+      console.log(e);
+    }
+
     setImageBoolean(true);
   };
 
@@ -156,17 +169,6 @@ const ImageInput = () => {
   };
 
   const encodeFileToBase64 = async () => {
-    try {
-      const reader = new FileReader();
-      reader.readAsDataURL(uploadImages);
-      reader.onloadend = () => {
-        const base64data = reader.result;
-        setbase64image(base64data);
-      };
-    } catch (e) {
-      console.log(e);
-    }
-
     const url = "http://210.125.212.192:8999/image_post";
     await axios.post(url, {
       img: base64image,
@@ -174,9 +176,9 @@ const ImageInput = () => {
     }).then(response => {
       //console.log(response.data.img);
       setDownloadImage("data:image/;base64,"+response.data.img);
-      //router.push('/matchingPages/MatchingTypesPage')
+      router.push('/matchingPages/MatchingTypesPage')
     }).catch(e => {
-      console.log(e)
+      console.log(e);
     })
   }
 
