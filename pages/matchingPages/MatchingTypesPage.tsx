@@ -8,7 +8,6 @@ import { Cookies } from 'react-cookie'
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
 export interface ProdInfo{
-
     id:string,
     productImg: string,
     productName:string,
@@ -19,13 +18,19 @@ export interface ProdInfo{
     productViews:number
     
 }
+interface toninton {
+    id: 5712, 
+    name: '[패키지] BASIC HALF PANTS (13COLOR)...', 
+    price: 35000, majorTag: 'BOTTOM', 
+    detailTag: 'SHORTS', 
+}
 
 function MatchingTypesPage() {
     const cookie = new Cookies();
     const router = useRouter()
     const { currentName } = router.query
     const [MaImage, setMaI] = useState<string>()
-
+    const [cloth_toninton, setCloth_toninton] = useState<[]>()
     const download_cv_image = useSelector((state) => {
         //@ts-ignore
         return state.authToken.img_url;
@@ -60,7 +65,8 @@ function MatchingTypesPage() {
     const fetchData = async () => {
         const url = `http://210.125.212.192:8666/api/clothes/matching?majorTag=${selected_majortag}&color=${color_c}&saturation=${color_s}&value=${color_v}`;
         axios.get(url).then((response) => {
-            console.log(response);
+            setCloth_toninton(response.data.data.toneInTones);
+            console.log(cloth_toninton);
         }).catch(e=>{
             console.log(e)
         })
@@ -124,10 +130,9 @@ function MatchingTypesPage() {
             </div>
            
         </div>
-
-
-
+        
         <div className='relative top-[50rem]'>
+    
            <MatcingRow 
            title="Ton On Ton 매칭 결과"
            id="tonOn"/>
