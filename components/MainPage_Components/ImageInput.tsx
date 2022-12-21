@@ -3,8 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useCallback, useRef, useState, useEffect } from "react";
+import { Cookies } from "react-cookie";
+import { useDispatch, useSelector } from 'react-redux';
 import MatchingTypesPage from "../../pages/matchingPages/MatchingTypesPage";
-
+import { DOWNLOAD_IMAGE } from "../../Store/Auth"
+import { SELECT_MAJORTAG } from "../../Store/Auth"
+import { FETCH_COLOR_C } from "../../Store/Auth"
+import { FETCH_COLOR_S } from "../../Store/Auth"
+import { FETCH_COLOR_V } from "../../Store/Auth"
 /*
 import ColorFilter from "./ColorFilter";
 <div className="mt-10">
@@ -94,6 +100,7 @@ export default ColorFilter
 import DetailedType from "./DetailedType";
 
 const ImageInput = () => {
+  const cookie = new Cookies();
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<string>();
   const [uploadImages, setUploadImages] = useState<File>();
@@ -124,6 +131,7 @@ const ImageInput = () => {
   ];
 
   const router = useRouter()
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     fileRef?.current?.click();
@@ -134,7 +142,7 @@ const ImageInput = () => {
     const files = (e.target.files as FileList)[0];
     const files2 = e.target.files[0];
     const reader = new FileReader();
-  
+    
     if (files2 === undefined) {
       return;
     }
@@ -174,9 +182,14 @@ const ImageInput = () => {
       img: base64image,
       Headers: "Content-Type : application/json",
     }).then(response => {
-      //console.log(response.data.img);
+      console.log(response.data);
       setDownloadImage("data:image/;base64,"+response.data.img);
       router.push('/matchingPages/MatchingTypesPage')
+      dispatch(DOWNLOAD_IMAGE("data:image/;base64,"+response.data.img));
+      dispatch(SELECT_MAJORTAG(tagTypeSelected));
+      dispatch(FETCH_COLOR_C(response.data.color))
+      dispatch(FETCH_COLOR_S(response.data.saturation))
+      dispatch(FETCH_COLOR_V(response.data.value))
     }).catch(e => {
       console.log(e);
     })

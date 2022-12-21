@@ -4,8 +4,11 @@ import { useRouter } from "next/router"
 
 import MatcingRow from "../../components/MatchingRow"
 import Head from 'next/head'
+import { Cookies } from 'react-cookie'
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios'
 export interface ProdInfo{
-    
+
     id:string,
     productImg: string,
     productName:string,
@@ -17,18 +20,51 @@ export interface ProdInfo{
     
 }
 
-function MatchingTypesPage( ) {
+function MatchingTypesPage() {
+    const cookie = new Cookies();
     const router = useRouter()
     const { currentName } = router.query
-    
-   const [MaImage, setMaI] = useState<string>()
+    const [MaImage, setMaI] = useState<string>()
+
+    const download_cv_image = useSelector((state) => {
+        //@ts-ignore
+        return state.authToken.img_url;
+      });
+
+      const selected_majortag = useSelector((state) => {
+        //@ts-ignore
+        return state.authToken.majorTag;
+      });
+
+      const color_c = useSelector((state) => {
+        //@ts-ignore
+        return state.authToken.c;
+      });
+
+      const color_s = useSelector((state) => {
+        //@ts-ignore
+        return state.authToken.s;
+      });
+
+      
+      const color_v = useSelector((state) => {
+        //@ts-ignore
+        return state.authToken.v;
+      });
 
     useEffect(() => {
-        
+            fetchData()
         }, []);
     
 
-
+    const fetchData = async () => {
+        const url = `http://210.125.212.192:8666/api/clothes/matching?majorTag=${selected_majortag}&color=${color_c}&saturation=${color_s}&value=${color_v}`;
+        axios.get(url).then((response) => {
+            console.log(response);
+        }).catch(e=>{
+            console.log(e)
+        })
+    }
     interface MInfo{
         type: string,
         detail: string,
@@ -42,8 +78,6 @@ function MatchingTypesPage( ) {
         }
     
         
-    
-
   return (
     <>
       <Head>
@@ -72,7 +106,7 @@ function MatchingTypesPage( ) {
                     <div className='absolute right-0 left-0 top-0 bottom-0  w-[8rem] m-auto'>
                         <img
                             className='border-4 border-black'
-                            src="https://image.msscdn.net/images/goods_img/20210204/1778404/1778404_1_220.jpg"
+                            src={download_cv_image}
                         />
                     </div>
                     
