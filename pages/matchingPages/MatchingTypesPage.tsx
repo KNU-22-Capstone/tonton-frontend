@@ -78,8 +78,8 @@ function MatchingTypesPage() {
         
     }
     const matchingImage : MInfo =
-        {type : "아우터",
-        detail : "후드집업",
+        {type : "상의",
+        detail : "후드티",
         color: "그레이"
         }
     

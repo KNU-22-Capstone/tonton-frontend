@@ -90,7 +90,7 @@ const register = () => {
   const Register = () => {
     const url = 'http://3.39.118.175:8080/auth/signup';
     const local_utl = "http://localhost:8080/auth/signup";
-    const server_utl = 'http://210.125.212.192:8666/auth/signin'
+    const server_utl = 'http://210.125.212.192:8666/auth/signup'
 
     axios.post(server_utl, {
         loginId: id,
